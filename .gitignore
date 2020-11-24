@@ -1,0 +1,21 @@
+
+.DS_Store
+
+# gradle config files
+.gradle/
+
+# IDEA config files
+.idea/libraries
+.idea/modules
+.idea/caches
+.idea/*.xml
+
+# generated directories
+build/
+out/
+
+*.iml
+local.properties
+
+node_modules/
+package-lock.json

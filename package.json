@@ -1,0 +1,23 @@
+{
+  "name": "skinchange-lite",
+  "version": "0.0.0",
+  "description": "[![](https://jitpack.io/v/VerstSiu/skinchange-lite.svg)](https://jitpack.io/#VerstSiu/skinchange-lite)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VerstSiu/skinchange-lite.git"
+  },
+  "author": "verstsiu",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/VerstSiu/skinchange-lite/issues"
+  },
+  "homepage": "https://github.com/VerstSiu/skinchange-lite#readme",
+  "private": true,
+  "devDependencies": {
+    "standard-version": "^9.0.0"
+  }
+}
