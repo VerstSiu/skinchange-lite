@@ -17,17 +17,39 @@
  */
 package com.ijoic.skinchange.lite.app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.ijoic.skinchange.lite.SkinManager
+import com.ijoic.skinchange.lite.app.databinding.ActivityMainBinding
+import com.ijoic.skinchange.lite.context.impl.WindowInjectContext.injectStatusBarColor
+import com.ijoic.skinchange.lite.context.impl.WindowInjectContext.injectWindowBackground
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * Main activity
  *
  * @author verstsiu created at 2020-11-24 11:17
  */
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+internal class MainActivity : AppCompatActivity() {
+
+  @Inject lateinit var skinManager: SkinManager
+
+  private lateinit var binding: ActivityMainBinding
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+
+    skinManager.bindSuffix("s2")
+    skinManager.injectWith(this)
+      .injectStatusBarColor(R.color.common_status_bar_color)
+      .injectWindowBackground(R.color.common_window_background_color)
+
+    binding.actionToggleSkin.setOnClickListener {
+
+    }
   }
 }

@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">SkinChange Lite</string>
+
+  <string name="action_toggle_skin">Toggle skin</string>
 </resources>
