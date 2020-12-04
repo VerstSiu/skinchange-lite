@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.ijoic.skinchange.lite.SkinManager
 import com.ijoic.skinchange.lite.app.databinding.ActivityMainBinding
 import com.ijoic.skinchange.lite.context.impl.WindowInjectContext.injectStatusBarColor
+import com.ijoic.skinchange.lite.context.impl.WindowInjectContext.injectStatusBarThemeLight
 import com.ijoic.skinchange.lite.context.impl.WindowInjectContext.injectWindowBackground
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -46,6 +47,7 @@ internal class MainActivity : AppCompatActivity() {
     skinManager.bindSuffix("s2")
     skinManager.injectWith(this)
       .injectStatusBarColor(R.color.common_status_bar_color)
+      .injectStatusBarThemeLight(R.bool.common_status_bar_text_light)
       .injectWindowBackground(R.color.common_window_background_color)
 
     binding.actionToggleSkin.setOnClickListener {

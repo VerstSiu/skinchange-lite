@@ -19,6 +19,7 @@ package com.ijoic.skinchange.lite.resource
 
 import android.content.Context
 import androidx.annotation.AnyRes
+import androidx.annotation.BoolRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 
@@ -27,10 +28,16 @@ import androidx.annotation.DrawableRes
  *
  * @author verstsiu created at 2020-12-03 11:22
  */
-internal abstract class ResourceReader(private val context: Context) {
+abstract class ResourceReader internal constructor(private val context: Context) {
 
   private val idCache = mutableMapOf<Int, Int>()
+  private val boolCache = mutableMapOf<Int, Boolean>()
   private val colorCache = mutableMapOf<Int, Int>()
+
+  /**
+   * Returns boolean value of [resId]
+   */
+  abstract fun getBool(@BoolRes resId: Int): Boolean?
 
   /**
    * Returns color value of [resId]
@@ -41,6 +48,22 @@ internal abstract class ResourceReader(private val context: Context) {
    * Returns mapped drawable resId
    */
   abstract fun getDrawableResId(@DrawableRes resId: Int): Int
+
+  /**
+   * Returns fetched bool or null
+   */
+  protected fun fetchBoolOrNull(@BoolRes resId: Int): Boolean? {
+    if (resId == 0) {
+      return null
+    }
+    var bool = boolCache[resId]
+
+    if (bool == null) {
+      bool = context.resources?.runCatching { getBoolean(resId) }?.getOrNull()
+        ?.also { boolCache[resId] = it }
+    }
+    return bool
+  }
 
   /**
    * Returns fetched color or null

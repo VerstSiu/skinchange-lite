@@ -18,9 +18,12 @@
 package com.ijoic.skinchange.lite.context.impl
 
 import android.app.Activity
+import android.view.View
+import androidx.annotation.BoolRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import com.ijoic.skinchange.lite.context.InjectContext
+import com.ijoic.skinchange.lite.util.Flags
 
 /**
  * Window inject context
@@ -38,6 +41,28 @@ object WindowInjectContext {
         val color = reader.getColor(resId)
         if (color != null) {
           window.statusBarColor = color
+        }
+      }
+    }
+    return this
+  }
+
+  /**
+   * Inject status bar theme light status with [resId]
+   *
+   * Text color with theme light: true - black, false - white
+   */
+  fun <T: Activity> InjectContext<T>.injectStatusBarThemeLight(@BoolRes resId: Int): InjectContext<T> {
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+      val decorView = component.window?.decorView
+      if (decorView != null) {
+        val isLight = reader.getBool(resId)
+        if (isLight != null) {
+          decorView.systemUiVisibility = Flags.edit(
+            isLight,
+            decorView.systemUiVisibility,
+            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+          )
         }
       }
     }
