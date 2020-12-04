@@ -28,7 +28,7 @@ import androidx.annotation.DrawableRes
  *
  * @author verstsiu created at 2020-12-03 11:22
  */
-internal abstract class ResourceReader(private val context: Context) {
+abstract class ResourceReader internal constructor(private val context: Context) {
 
   private val idCache = mutableMapOf<Int, Int>()
   private val boolCache = mutableMapOf<Int, Boolean>()

@@ -25,6 +25,6 @@ import com.ijoic.skinchange.lite.resource.ResourceReader
  * @author verstsiu created at 2020-12-02 20:16
  */
 class InjectContext<T> internal constructor(
-  internal val component: T,
-  internal val reader: ResourceReader
+  val component: T,
+  val reader: ResourceReader
 )
