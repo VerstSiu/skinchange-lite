@@ -15,28 +15,39 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.resource.impl
-
-import android.content.Context
-import com.ijoic.skinchange.lite.resource.ResourceReader
+package com.ijoic.skinchange.lite.util
 
 /**
- * Default resource reader
+ * Flag utils
  *
- * @author verstsiu created at 2020-12-03 11:23
+ * @author verstsiu created at 2020-12-04 09:04
  */
-internal class DefaultResourceReader(context: Context) : ResourceReader(context) {
+internal object Flags {
 
-  override fun getBool(resId: Int): Boolean? {
-    return fetchBoolOrNull(resId)
+  /**
+   * Edit [flags] with value
+   *
+   * Operation when [contains]: true - attach, false - detach
+   */
+  fun edit(contains: Boolean, flags: Int, value: Int): Int {
+    return when(contains) {
+      true -> attach(flags, value)
+      else -> detach(flags, value)
+    }
   }
 
-  override fun getColor(resId: Int): Int? {
-    return fetchColorOrNull(resId)
+  /**
+   * Attach [value] to [flags]
+   */
+  fun attach(flags: Int, value: Int): Int {
+    return flags or value
   }
 
-  override fun getDrawableResId(resId: Int): Int {
-    return resId
+  /**
+   * Detach [value] from [flags]
+   */
+  fun detach(flags: Int, value: Int): Int {
+    return flags and value.inv()
   }
 
 }

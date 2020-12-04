@@ -26,4 +26,5 @@ internal object DefTypes {
   const val DRAWABLE = "drawable"
   const val COLOR = "color"
   const val MIPMAP = "mipmap"
+  const val BOOL = "bool"
 }

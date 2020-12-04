@@ -31,6 +31,11 @@ internal class SuffixResourceReader(
   context: Context
 ) : ResourceReader(context) {
 
+  override fun getBool(resId: Int): Boolean? {
+    val resultId = measureSuffixResIdOrNull(suffix, resId, DefTypes.BOOL) ?: return null
+    return fetchBoolOrNull(resultId)
+  }
+
   override fun getColor(resId: Int): Int? {
     val resultId = measureSuffixResIdOrNull(suffix, resId, DefTypes.COLOR) ?: return null
     return fetchColorOrNull(resultId)
