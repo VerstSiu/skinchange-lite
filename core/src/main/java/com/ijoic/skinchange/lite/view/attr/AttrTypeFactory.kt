@@ -17,6 +17,12 @@
  */
 package com.ijoic.skinchange.lite.view.attr
 
+import com.ijoic.skinchange.lite.view.attr.compat.*
+import com.ijoic.skinchange.lite.view.attr.compat.BackgroundTintAttrType
+import com.ijoic.skinchange.lite.view.attr.compat.CollapseIconAttrType
+import com.ijoic.skinchange.lite.view.attr.compat.LogoAttrType
+import com.ijoic.skinchange.lite.view.attr.compat.NavigationIconAttrType
+import com.ijoic.skinchange.lite.view.attr.compat.SubtitleTextColorAttrType
 import com.ijoic.skinchange.lite.view.attr.impl.*
 import com.ijoic.skinchange.lite.view.attr.impl.BackgroundAttrType
 import com.ijoic.skinchange.lite.view.attr.impl.IndeterminateDrawableAttrType
@@ -32,8 +38,10 @@ import com.ijoic.skinchange.lite.view.attr.impl.TextColorAttrType
 internal object AttrTypeFactory {
 
   private const val BACKGROUND = "background"
+  private const val BACKGROUND_TINT = "backgroundTint"
   private const val BUTTON = "button"
   private const val CHECK_MARK = "checkMark"
+  private const val COLLAPSE_ICON = "collapseIcon"
   private const val DIVIDER = "divider"
   private const val DRAWABLE_LEFT = "drawableLeft"
   private const val DRAWABLE_TOP = "drawableTop"
@@ -41,21 +49,27 @@ internal object AttrTypeFactory {
   private const val DRAWABLE_BOTTOM = "drawableBottom"
   private const val INDETERMINATE_DRAWABLE = "indeterminateDrawable"
   private const val LIST_SELECTOR = "listSelector"
+  private const val LOGO = "logo"
+  private const val NAVIGATION_ICON = "navigationIcon"
   private const val POPUP_BACKGROUND = "popupBackground"
   private const val PROGRESS_DRAWABLE = "progressDrawable"
   private const val SHADOW_COLOR = "shadowColor"
   private const val SRC = "src"
+  private const val SUBTITLE_TEXT_COLOR = "subtitleTextColor"
   private const val TEXT_COLOR = "textColor"
   private const val TEXT_COLOR_HIGHLIGHT = "textColorHighlight"
   private const val TEXT_COLOR_HINT = "textColorHint"
   private const val TEXT_COLOR_LINK = "textColorLink"
   private const val THUMB = "thumb"
+  private const val TITLE_TEXT_COLOR = "titleTextColor"
   private const val TRACK = "track"
 
   private val attrMap = mutableMapOf(
     BACKGROUND to BackgroundAttrType,
+    BACKGROUND_TINT to BackgroundTintAttrType,
     BUTTON to ButtonAttrType,
     CHECK_MARK to CheckMarkAttrType,
+    COLLAPSE_ICON to CollapseIconAttrType,
     DIVIDER to DividerAttrType,
     DRAWABLE_LEFT to DrawableLeftAttrType,
     DRAWABLE_TOP to DrawableTopAttrType,
@@ -63,15 +77,19 @@ internal object AttrTypeFactory {
     DRAWABLE_BOTTOM to DrawableBottomAttrType,
     INDETERMINATE_DRAWABLE to IndeterminateDrawableAttrType,
     LIST_SELECTOR to ListSelectorAttrType,
+    LOGO to LogoAttrType,
+    NAVIGATION_ICON to NavigationIconAttrType,
     POPUP_BACKGROUND to PopupBackgroundAttrType,
     PROGRESS_DRAWABLE to ProgressDrawableAttrType,
     SHADOW_COLOR to ShadowColorAttrType,
     SRC to SrcAttrType,
+    SUBTITLE_TEXT_COLOR to SubtitleTextColorAttrType,
     TEXT_COLOR to TextColorAttrType,
     TEXT_COLOR_HIGHLIGHT to TextColorHighlightAttrType,
     TEXT_COLOR_HINT to TextColorHintAttrType,
     TEXT_COLOR_LINK to TextColorLinkAttrType,
     THUMB to ThumbAttrType,
+    TITLE_TEXT_COLOR to TitleTextColorAttrType,
     TRACK to TrackAttrType
   )
 
