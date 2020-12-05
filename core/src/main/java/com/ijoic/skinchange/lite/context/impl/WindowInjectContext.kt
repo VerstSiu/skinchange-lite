@@ -38,7 +38,7 @@ object WindowInjectContext {
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
       val window = component.window
       if (window != null) {
-        val color = reader.getColor(resId)
+        val color = reader.getColorOrNull(resId)
         if (color != null) {
           window.statusBarColor = color
         }
@@ -56,7 +56,7 @@ object WindowInjectContext {
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
       val decorView = component.window?.decorView
       if (decorView != null) {
-        val isLight = reader.getBool(resId)
+        val isLight = reader.getBoolOrNull(resId)
         if (isLight != null) {
           decorView.systemUiVisibility = Flags.edit(
             isLight,

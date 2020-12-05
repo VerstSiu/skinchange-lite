@@ -18,8 +18,10 @@
 package com.ijoic.skinchange.lite.resource.impl
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
 import com.ijoic.skinchange.lite.resource.ResourceReader
-import com.ijoic.skinchange.lite.resource.constants.DefTypes
+import com.ijoic.skinchange.lite.resource.constants.ResCategory
 
 /**
  * Suffix resource reader
@@ -31,20 +33,31 @@ internal class SuffixResourceReader(
   context: Context
 ) : ResourceReader(context) {
 
-  override fun getBool(resId: Int): Boolean? {
-    val resultId = measureSuffixResIdOrNull(suffix, resId, DefTypes.BOOL) ?: return null
+  override fun getBoolOrNull(resId: Int): Boolean? {
+    val resultId = measureResIdOrNull(resId, ResCategory.BOOL) ?: return null
     return fetchBoolOrNull(resultId)
   }
 
-  override fun getColor(resId: Int): Int? {
-    val resultId = measureSuffixResIdOrNull(suffix, resId, DefTypes.COLOR) ?: return null
+  override fun getColorOrNull(resId: Int): Int? {
+    val resultId = measureResIdOrNull(resId, ResCategory.COLOR) ?: return null
     return fetchColorOrNull(resultId)
   }
 
+  override fun getColorListOrNull(resId: Int): ColorStateList? {
+    val resultId = measureResIdOrNull(resId, ResCategory.COLOR_LIST) ?: return null
+    return fetchColorListOrNull(resultId)
+  }
+
+  override fun getDrawableOrNull(resId: Int): Drawable? {
+    val resultId = measureResIdOrNull(resId, ResCategory.DRAWABLE) ?: return null
+    return fetchDrawableOrNull(resultId)
+  }
+
   override fun getDrawableResId(resId: Int): Int {
-    if (resId == 0) {
-      return resId
-    }
-    return measureSuffixResIdOrNull(suffix, resId, DefTypes.MIPMAP, DefTypes.DRAWABLE, DefTypes.COLOR) ?: resId
+    return measureResIdOrNull(resId, ResCategory.DRAWABLE) ?: resId
+  }
+
+  override fun wrapResName(resName: String): String {
+    return "${resName}_$suffix"
   }
 }

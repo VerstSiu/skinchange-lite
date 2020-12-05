@@ -18,6 +18,8 @@
 package com.ijoic.skinchange.lite.resource.impl
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
 import com.ijoic.skinchange.lite.resource.ResourceReader
 
 /**
@@ -27,16 +29,28 @@ import com.ijoic.skinchange.lite.resource.ResourceReader
  */
 internal class DefaultResourceReader(context: Context) : ResourceReader(context) {
 
-  override fun getBool(resId: Int): Boolean? {
+  override fun getBoolOrNull(resId: Int): Boolean? {
     return fetchBoolOrNull(resId)
   }
 
-  override fun getColor(resId: Int): Int? {
+  override fun getColorOrNull(resId: Int): Int? {
     return fetchColorOrNull(resId)
+  }
+
+  override fun getColorListOrNull(resId: Int): ColorStateList? {
+    return fetchColorListOrNull(resId)
+  }
+
+  override fun getDrawableOrNull(resId: Int): Drawable? {
+    return fetchDrawableOrNull(resId)
   }
 
   override fun getDrawableResId(resId: Int): Int {
     return resId
+  }
+
+  override fun wrapResName(resName: String): String {
+    return resName
   }
 
 }
