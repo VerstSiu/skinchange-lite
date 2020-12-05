@@ -15,14 +15,24 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.view.attr.impl
+package com.ijoic.skinchange.lite.context.impl
 
-import com.ijoic.skinchange.lite.util.TextViewHelper
-import com.ijoic.skinchange.lite.view.attr.base.CompoundDrawableAttrType
+import android.view.View
+import androidx.annotation.DrawableRes
+import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * Drawable top attribute type
+ * View inject context
  *
- * @author verstsiu created at 2020-12-05 17:17
+ * @author verstsiu created at 2020-12-05 20:13
  */
-internal object DrawableTopAttrType : CompoundDrawableAttrType(TextViewHelper.INDEX_TOP)
+class ViewInjectContext {
+  /**
+   * Inject background with [resId]
+   */
+  fun <T: View> InjectContext<T>.injectBackground(@DrawableRes resId: Int): InjectContext<T> {
+    val resultId = reader.getDrawableResId(resId)
+    component.setBackgroundResource(resultId)
+    return this
+  }
+}

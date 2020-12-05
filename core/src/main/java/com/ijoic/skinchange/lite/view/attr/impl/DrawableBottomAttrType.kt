@@ -17,6 +17,7 @@
  */
 package com.ijoic.skinchange.lite.view.attr.impl
 
+import com.ijoic.skinchange.lite.util.TextViewHelper
 import com.ijoic.skinchange.lite.view.attr.base.CompoundDrawableAttrType
 
 /**
@@ -24,4 +25,4 @@ import com.ijoic.skinchange.lite.view.attr.base.CompoundDrawableAttrType
  *
  * @author verstsiu created at 2020-12-05 17:17
  */
-internal object DrawableBottomAttrType : CompoundDrawableAttrType(INDEX_BOTTOM)
+internal object DrawableBottomAttrType : CompoundDrawableAttrType(TextViewHelper.INDEX_BOTTOM)

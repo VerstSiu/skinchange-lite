@@ -20,6 +20,7 @@ package com.ijoic.skinchange.lite.view.attr.base
 import android.view.View
 import android.widget.TextView
 import com.ijoic.skinchange.lite.resource.ResourceReader
+import com.ijoic.skinchange.lite.util.TextViewHelper
 import com.ijoic.skinchange.lite.view.attr.AttrType
 
 /**
@@ -34,23 +35,7 @@ internal abstract class CompoundDrawableAttrType(private val compoundIndex: Int)
       return
     }
     val drawable = reader.getDrawableOrNull(resName) ?: return
-    val drawables = view.compoundDrawables
-
-    drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
-    drawables[compoundIndex] = drawable
-
-    view.setCompoundDrawables(
-      drawables[INDEX_LEFT],
-      drawables[INDEX_TOP],
-      drawables[INDEX_RIGHT],
-      drawables[INDEX_BOTTOM]
-    )
+    TextViewHelper.setCompoundDrawable(drawable, view, compoundIndex)
   }
 
-  protected companion object {
-    const val INDEX_LEFT = 0
-    const val INDEX_TOP = 1
-    const val INDEX_RIGHT = 2
-    const val INDEX_BOTTOM = 3
-  }
 }

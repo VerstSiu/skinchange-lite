@@ -55,7 +55,7 @@ abstract class ResourceReader internal constructor(private val context: Context)
   /**
    * Returns drawable value of [resId]
    */
-  abstract fun getDrawableOrNull(@ColorRes resId: Int): Drawable?
+  abstract fun getDrawableOrNull(@DrawableRes resId: Int): Drawable?
 
   /* Get Resource by resId :END */
 
@@ -158,12 +158,11 @@ abstract class ResourceReader internal constructor(private val context: Context)
   /**
    * Returns fetched drawable or null
    */
-  protected fun fetchDrawableOrNull(@ColorRes resId: Int): Drawable? {
+  protected fun fetchDrawableOrNull(@DrawableRes resId: Int): Drawable? {
     if (resId == 0) {
       return null
     }
-    val resources = context.resources ?: return null
-    return this.runCatching { ResourcesCompat.getDrawable(resources, resId, null) }.getOrNull()
+    return this.runCatching { AppCompatResources.getDrawable(context, resId) }.getOrNull()
   }
 
   /**

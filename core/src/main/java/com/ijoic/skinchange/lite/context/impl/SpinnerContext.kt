@@ -15,14 +15,24 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.view.attr.impl
+package com.ijoic.skinchange.lite.context.impl
 
-import com.ijoic.skinchange.lite.util.TextViewHelper
-import com.ijoic.skinchange.lite.view.attr.base.CompoundDrawableAttrType
+import android.widget.Spinner
+import androidx.annotation.DrawableRes
+import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * Drawable top attribute type
+ * Spinner context
  *
- * @author verstsiu created at 2020-12-05 17:17
+ * @author verstsiu created at 2020-12-05 20:45
  */
-internal object DrawableTopAttrType : CompoundDrawableAttrType(TextViewHelper.INDEX_TOP)
+class SpinnerContext {
+  /**
+   * Inject popup background with [resId]
+   */
+  fun <T: Spinner> InjectContext<T>.injectPopupBackground(@DrawableRes resId: Int): InjectContext<T> {
+    val resultId = reader.getDrawableResId(resId)
+    component.setPopupBackgroundResource(resultId)
+    return this
+  }
+}

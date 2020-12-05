@@ -15,14 +15,26 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.view.attr.impl
+package com.ijoic.skinchange.lite.context.impl
 
-import com.ijoic.skinchange.lite.util.TextViewHelper
-import com.ijoic.skinchange.lite.view.attr.base.CompoundDrawableAttrType
+import android.widget.SeekBar
+import androidx.annotation.DrawableRes
+import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * Drawable top attribute type
+ * SeekBar context
  *
- * @author verstsiu created at 2020-12-05 17:17
+ * @author verstsiu created at 2020-12-05 20:21
  */
-internal object DrawableTopAttrType : CompoundDrawableAttrType(TextViewHelper.INDEX_TOP)
+class SeekBarContext {
+  /**
+   * Inject thumb with [resId]
+   */
+  fun <T: SeekBar> InjectContext<T>.injectThumb(@DrawableRes resId: Int): InjectContext<T> {
+    val drawable = reader.getDrawableOrNull(resId)
+    if (drawable != null) {
+      component.thumb = drawable
+    }
+    return this
+  }
+}
