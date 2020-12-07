@@ -28,11 +28,12 @@ import com.ijoic.skinchange.lite.view.attr.AttrType
  * @author verstsiu created at 2020-12-05 18:02
  */
 internal object ShadowColorAttrType : AttrType {
-  override fun inject(view: View, resName: String, reader: ResourceReader) {
+  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
     if (view !is TextView) {
-      return
+      return false
     }
-    val color = reader.getColorOrNull(resName) ?: return
+    val color = reader.getColorOrNull(resName) ?: return false
     view.setShadowLayer(view.shadowRadius, view.shadowDx, view.shadowDy, color)
+    return true
   }
 }

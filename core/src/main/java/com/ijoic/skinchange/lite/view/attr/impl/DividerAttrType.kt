@@ -29,16 +29,19 @@ import com.ijoic.skinchange.lite.view.attr.AttrType
  * @author verstsiu created at 2020-12-05 18:27
  */
 internal object DividerAttrType : AttrType {
-  override fun inject(view: View, resName: String, reader: ResourceReader) {
+  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
     when (view) {
       is ListView -> {
-        val drawable = reader.getDrawableOrNull(resName) ?: return
+        val drawable = reader.getDrawableOrNull(resName) ?: return false
         view.divider = drawable
+        return true
       }
       is LinearLayout -> {
-        val drawable = reader.getDrawableOrNull(resName) ?: return
+        val drawable = reader.getDrawableOrNull(resName) ?: return false
         view.dividerDrawable = drawable
+        return true
       }
     }
+    return false
   }
 }

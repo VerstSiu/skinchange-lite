@@ -30,12 +30,13 @@ import com.ijoic.skinchange.lite.view.attr.AttrType
  */
 internal abstract class CompoundDrawableAttrType(private val compoundIndex: Int) : AttrType {
 
-  override fun inject(view: View, resName: String, reader: ResourceReader) {
+  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
     if (view !is TextView) {
-      return
+      return false
     }
-    val drawable = reader.getDrawableOrNull(resName) ?: return
+    val drawable = reader.getDrawableOrNull(resName) ?: return false
     TextViewHelper.setCompoundDrawable(drawable, view, compoundIndex)
+    return true
   }
 
 }

@@ -28,16 +28,17 @@ import com.ijoic.skinchange.lite.view.attr.AttrType
  * @author verstsiu created at 2020-12-05 13:13
  */
 internal object TextColorAttrType : AttrType {
-  override fun inject(view: View, resName: String, reader: ResourceReader) {
+  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
     if (view !is TextView) {
-      return
+      return false
     }
     val colorList = reader.getColorListOrNull(resName)
     if (colorList != null) {
       view.setTextColor(colorList)
-    } else {
-      val color = reader.getColorOrNull(resName) ?: return
-      view.setTextColor(color)
+      return true
     }
+    val color = reader.getColorOrNull(resName) ?: return false
+    view.setTextColor(color)
+    return true
   }
 }

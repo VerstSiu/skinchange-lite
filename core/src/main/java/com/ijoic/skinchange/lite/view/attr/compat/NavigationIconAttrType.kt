@@ -28,11 +28,12 @@ import com.ijoic.skinchange.lite.view.attr.AttrType
  * @author verstsiu created at 2020-12-05 21:57
  */
 internal object NavigationIconAttrType : AttrType {
-  override fun inject(view: View, resName: String, reader: ResourceReader) {
+  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
     if (view !is Toolbar) {
-      return
+      return false
     }
-    val resId = reader.getDrawableResIdOrNull(resName) ?: return
+    val resId = reader.getDrawableResIdOrNull(resName) ?: return false
     view.setNavigationIcon(resId)
+    return true
   }
 }

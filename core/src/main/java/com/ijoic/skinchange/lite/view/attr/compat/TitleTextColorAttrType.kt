@@ -28,16 +28,17 @@ import com.ijoic.skinchange.lite.view.attr.AttrType
  * @author verstsiu created at 2020-12-05 22:01
  */
 internal object TitleTextColorAttrType : AttrType {
-  override fun inject(view: View, resName: String, reader: ResourceReader) {
+  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
     if (view !is Toolbar) {
-      return
+      return false
     }
     val colorList = reader.getColorListOrNull(resName)
     if (colorList != null) {
       view.setTitleTextColor(colorList)
-    } else {
-      val color = reader.getColorOrNull(resName) ?: return
-      view.setTitleTextColor(color)
+      return true
     }
+    val color = reader.getColorOrNull(resName) ?: return false
+    view.setTitleTextColor(color)
+    return true
   }
 }

@@ -15,30 +15,21 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.view.attr.impl
+package com.ijoic.skinchange.lite.view.attr.base
 
 import android.view.View
-import android.widget.SeekBar
-import android.widget.Switch
 import com.ijoic.skinchange.lite.resource.ResourceReader
 import com.ijoic.skinchange.lite.view.attr.AttrType
 
 /**
- * Thumb attribute type
+ * Multiple match attribute type
  *
- * @author verstsiu created at 2020-12-05 16:27
+ * @author verstsiu created at 2020-12-07 10:44
  */
-internal object ThumbAttrType : AttrType {
+internal class MultiMatchAttrType(private val typeItems: List<AttrType>) : AttrType {
   override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
-    when(view) {
-      is SeekBar -> {
-        val drawable = reader.getDrawableOrNull(resName) ?: return false
-        view.thumb = drawable
-        return true
-      }
-      is Switch -> {
-        val resId = reader.getDrawableResIdOrNull(resName) ?: return false
-        view.setThumbResource(resId)
+    for (type in typeItems) {
+      if (type.inject(view, resName, reader)) {
         return true
       }
     }

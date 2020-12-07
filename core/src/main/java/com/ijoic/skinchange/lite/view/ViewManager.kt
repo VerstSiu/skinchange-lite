@@ -27,10 +27,7 @@ import com.ijoic.skinchange.lite.view.attr.AttrTypeFactory
  *
  * @author verstsiu created at 2020-12-04 22:17
  */
-internal object ViewManager {
-
-  private const val SCOPE_BASE = "skin"
-  private const val MIN_PARAM_SIZE = 3
+internal class ViewManager(private val factory: AttrTypeFactory) {
 
   /**
    * Inject [view] with resource [reader]
@@ -57,11 +54,15 @@ internal object ViewManager {
         continue
       }
       val type = params[2].takeIf { it.isNotEmpty() } ?: continue
-      val attr = AttrTypeFactory.getAttrTypeOrNull(type) ?: continue
+      val attr = factory.getAttrTypeOrNull(type) ?: continue
       val resName = params[1].takeIf { it.isNotEmpty() } ?: continue
 
       attr.inject(view, resName, reader)
     }
   }
 
+  private companion object {
+    private const val SCOPE_BASE = "skin"
+    private const val MIN_PARAM_SIZE = 3
+  }
 }

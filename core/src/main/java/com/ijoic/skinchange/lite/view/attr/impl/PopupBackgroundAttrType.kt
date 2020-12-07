@@ -29,16 +29,19 @@ import com.ijoic.skinchange.lite.view.attr.AttrType
  * @author verstsiu created at 2020-12-05 18:30
  */
 internal object PopupBackgroundAttrType : AttrType {
-  override fun inject(view: View, resName: String, reader: ResourceReader) {
+  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
     when (view) {
       is AutoCompleteTextView -> {
-        val resId = reader.getDrawableResIdOrNull(resName) ?: return
+        val resId = reader.getDrawableResIdOrNull(resName) ?: return false
         view.setDropDownBackgroundResource(resId)
+        return true
       }
       is Spinner -> {
-        val resId = reader.getDrawableResIdOrNull(resName) ?: return
+        val resId = reader.getDrawableResIdOrNull(resName) ?: return false
         view.setPopupBackgroundResource(resId)
+        return true
       }
     }
+    return false
   }
 }

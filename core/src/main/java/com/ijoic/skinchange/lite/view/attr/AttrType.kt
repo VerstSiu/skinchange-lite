@@ -25,9 +25,9 @@ import com.ijoic.skinchange.lite.resource.ResourceReader
  *
  * @author verstsiu created at 2020-12-04 22:17
  */
-internal interface AttrType {
+interface AttrType {
   /**
    * Inject [view] with [resName] and [reader]
    */
-  fun inject(view: View, resName: String, reader: ResourceReader)
+  fun inject(view: View, resName: String, reader: ResourceReader): Boolean
 }

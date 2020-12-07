@@ -28,11 +28,12 @@ import com.ijoic.skinchange.lite.view.attr.AttrType
  * @author verstsiu created at 2020-12-05 16:26
  */
 internal object ProgressDrawableAttrType : AttrType {
-  override fun inject(view: View, resName: String, reader: ResourceReader) {
+  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
     if (view !is ProgressBar) {
-      return
+      return false
     }
-    val drawable = reader.getDrawableOrNull(resName) ?: return
+    val drawable = reader.getDrawableOrNull(resName) ?: return false
     view.progressDrawable = drawable
+    return true
   }
 }

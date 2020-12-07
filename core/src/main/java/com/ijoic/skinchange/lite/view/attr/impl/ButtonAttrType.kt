@@ -28,11 +28,12 @@ import com.ijoic.skinchange.lite.view.attr.AttrType
  * @author verstsiu created at 2020-12-05 18:18
  */
 internal object ButtonAttrType : AttrType {
-  override fun inject(view: View, resName: String, reader: ResourceReader) {
+  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
     if (view !is CompoundButton) {
-      return
+      return false
     }
-    val resId = reader.getDrawableResIdOrNull(resName) ?: return
+    val resId = reader.getDrawableResIdOrNull(resName) ?: return false
     view.setButtonDrawable(resId)
+    return true
   }
 }

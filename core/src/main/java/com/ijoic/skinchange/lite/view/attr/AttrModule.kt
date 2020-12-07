@@ -15,21 +15,18 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.view.attr.impl
-
-import android.view.View
-import com.ijoic.skinchange.lite.resource.ResourceReader
-import com.ijoic.skinchange.lite.view.attr.AttrType
+package com.ijoic.skinchange.lite.view.attr
 
 /**
- * Background attribute type
+ * Attribute module
  *
- * @author verstsiu created at 2020-12-05 15:46
+ * @author verstsiu created at 2020-12-07 09:49
  */
-internal object BackgroundAttrType : AttrType {
-  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
-    val resId = reader.getDrawableResIdOrNull(resName) ?: return false
-    view.setBackgroundResource(resId)
-    return true
-  }
+interface AttrModule {
+
+  /**
+   * Type map
+   */
+  val typeMap: Map<String, AttrType>
+
 }

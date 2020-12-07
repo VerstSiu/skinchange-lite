@@ -28,11 +28,12 @@ import com.ijoic.skinchange.lite.view.attr.AttrType
  * @author verstsiu created at 2020-12-05 18:07
  */
 internal object TextColorHighlightAttrType : AttrType {
-  override fun inject(view: View, resName: String, reader: ResourceReader) {
+  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
     if (view !is TextView) {
-      return
+      return false
     }
-    val color = reader.getColorOrNull(resName) ?: return
+    val color = reader.getColorOrNull(resName) ?: return false
     view.highlightColor = color
+    return true
   }
 }

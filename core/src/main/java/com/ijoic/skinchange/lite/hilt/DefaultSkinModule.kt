@@ -15,21 +15,24 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.view.attr.impl
+package com.ijoic.skinchange.lite.hilt
 
-import android.view.View
-import com.ijoic.skinchange.lite.resource.ResourceReader
-import com.ijoic.skinchange.lite.view.attr.AttrType
+import com.ijoic.skinchange.lite.view.attr.AttrTypeFactory
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 
 /**
- * Background attribute type
+ * Default skin module
  *
- * @author verstsiu created at 2020-12-05 15:46
+ * @author verstsiu created at 2020-12-07 10:59
  */
-internal object BackgroundAttrType : AttrType {
-  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
-    val resId = reader.getDrawableResIdOrNull(resName) ?: return false
-    view.setBackgroundResource(resId)
-    return true
+@Module
+@InstallIn(ActivityComponent::class)
+object DefaultSkinModule {
+  @Provides
+  fun provideAttrFactory(): AttrTypeFactory {
+    return AttrTypeFactory()
   }
 }

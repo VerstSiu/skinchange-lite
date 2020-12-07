@@ -28,11 +28,12 @@ import com.ijoic.skinchange.lite.view.attr.AttrType
  * @author verstsiu created at 2020-12-05 18:25
  */
 internal object ListSelectorAttrType : AttrType {
-  override fun inject(view: View, resName: String, reader: ResourceReader) {
+  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
     if (view !is AbsListView) {
-      return
+      return false
     }
-    val resId = reader.getDrawableResIdOrNull(resName) ?: return
+    val resId = reader.getDrawableResIdOrNull(resName) ?: return false
     view.setSelector(resId)
+    return true
   }
 }
