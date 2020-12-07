@@ -65,6 +65,10 @@ internal class SuffixResourceReader(
     return measureResIdOrNull(resId, ResCategory.LAYOUT) ?: resId
   }
 
+  override fun getMenuResId(resId: Int): Int {
+    return measureResIdOrNull(resId, ResCategory.MENU) ?: resId
+  }
+
   override fun getStyleResId(resId: Int): Int {
     return measureResIdOrNull(resId, ResCategory.STYLE) ?: resId
   }

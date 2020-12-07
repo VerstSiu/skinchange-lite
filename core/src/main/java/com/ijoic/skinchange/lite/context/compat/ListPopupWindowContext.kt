@@ -18,33 +18,34 @@
 package com.ijoic.skinchange.lite.context.compat
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.StyleRes
-import androidx.appcompat.widget.ActionMenuView
+import androidx.appcompat.widget.ListPopupWindow
 import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * ActionMenuView context
+ * ListPopupWindow context
  *
- * @author verstsiu created at 2020-12-05 20:54
+ * @author verstsiu created at 2020-12-07 20:03
  */
-class ActionMenuViewContext {
+class ListPopupWindowContext {
 
   /**
-   * Inject popup theme with [resId]
+   * Inject list selector with [resId]
    */
-  fun <T: ActionMenuView> InjectContext<T>.injectPopupTheme(@StyleRes resId: Int): InjectContext<T> {
-    val resultId = reader.getStyleResId(resId)
-    component.popupTheme = resultId
+  fun <T: ListPopupWindow> InjectContext<T>.injectListSelector(@DrawableRes resId: Int): InjectContext<T> {
+    val drawable = reader.getDrawableOrNull(resId)
+    if (drawable != null) {
+      component.setListSelector(drawable)
+    }
     return this
   }
 
   /**
-   * Inject overflow icon with [resId]
+   * Inject background with [resId]
    */
-  fun <T: ActionMenuView> InjectContext<T>.injectOverflowIcon(@DrawableRes resId: Int): InjectContext<T> {
+  fun <T: ListPopupWindow> InjectContext<T>.injectBackground(@DrawableRes resId: Int): InjectContext<T> {
     val drawable = reader.getDrawableOrNull(resId)
     if (drawable != null) {
-      component.overflowIcon = drawable
+      component.setBackgroundDrawable(drawable)
     }
     return this
   }

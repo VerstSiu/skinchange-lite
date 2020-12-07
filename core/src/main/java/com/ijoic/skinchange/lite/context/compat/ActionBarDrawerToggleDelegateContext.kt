@@ -18,33 +18,24 @@
 package com.ijoic.skinchange.lite.context.compat
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.StyleRes
-import androidx.appcompat.widget.ActionMenuView
+import androidx.annotation.StringRes
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.graphics.drawable.DrawerArrowDrawable
 import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * ActionMenuView context
+ * ActionBarDrawerToggle Delegate context
  *
- * @author verstsiu created at 2020-12-05 20:54
+ * @author verstsiu created at 2020-12-07 19:14
  */
-class ActionMenuViewContext {
-
+class ActionBarDrawerToggleDelegateContext {
   /**
-   * Inject popup theme with [resId]
+   * Inject action bar up indicator with [resId]
    */
-  fun <T: ActionMenuView> InjectContext<T>.injectPopupTheme(@StyleRes resId: Int): InjectContext<T> {
-    val resultId = reader.getStyleResId(resId)
-    component.popupTheme = resultId
-    return this
-  }
-
-  /**
-   * Inject overflow icon with [resId]
-   */
-  fun <T: ActionMenuView> InjectContext<T>.injectOverflowIcon(@DrawableRes resId: Int): InjectContext<T> {
+  fun <T: ActionBarDrawerToggle.Delegate> InjectContext<T>.injectActionBarUpIndicator(@DrawableRes resId: Int, @StringRes contentDescRes: Int): InjectContext<T> {
     val drawable = reader.getDrawableOrNull(resId)
-    if (drawable != null) {
-      component.overflowIcon = drawable
+    if (drawable != null && drawable is DrawerArrowDrawable) {
+      component.setActionBarUpIndicator(drawable, contentDescRes)
     }
     return this
   }

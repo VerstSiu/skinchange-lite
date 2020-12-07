@@ -17,8 +17,11 @@
  */
 package com.ijoic.skinchange.lite.context.compat
 
+import android.content.Context
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.MenuRes
+import androidx.annotation.StyleRes
 import androidx.appcompat.widget.Toolbar
 import com.ijoic.skinchange.lite.context.InjectContext
 
@@ -30,11 +33,38 @@ import com.ijoic.skinchange.lite.context.InjectContext
 class ToolbarContext {
 
   /**
-   * Inject collapse icon with [resId]
+   * Inject popup theme with [resId]
    */
-  fun <T: Toolbar> InjectContext<T>.injectCollapseIcon(@DrawableRes resId: Int): InjectContext<T> {
-    val resultId = reader.getDrawableResId(resId)
-    component.setCollapseIcon(resultId)
+  fun <T: Toolbar> InjectContext<T>.injectPopupTheme(@StyleRes resId: Int): InjectContext<T> {
+    val resultId = reader.getStyleResId(resId)
+    component.popupTheme = resultId
+    return this
+  }
+
+  /**
+   * Inject title text appearance with [resId]
+   */
+  fun <T: Toolbar> InjectContext<T>.injectTitleTextAppearance(context: Context, @StyleRes resId: Int): InjectContext<T> {
+    val resultId = reader.getStyleResId(resId)
+    component.setTitleTextAppearance(context, resultId)
+    return this
+  }
+
+  /**
+   * Inject subtitle text appearance with [resId]
+   */
+  fun <T: Toolbar> InjectContext<T>.injectSubtitleTextAppearance(context: Context, @StyleRes resId: Int): InjectContext<T> {
+    val resultId = reader.getStyleResId(resId)
+    component.setSubtitleTextAppearance(context, resultId)
+    return this
+  }
+
+  /**
+   * Inject menu with [resId]
+   */
+  fun <T: Toolbar> InjectContext<T>.injectMenu(@MenuRes resId: Int): InjectContext<T> {
+    val resultId = reader.getMenuResId(resId)
+    component.inflateMenu(resultId)
     return this
   }
 
@@ -57,15 +87,21 @@ class ToolbarContext {
   }
 
   /**
-   * Inject subtitle text color with [resId]
+   * Inject collapse icon with [resId]
    */
-  fun <T: Toolbar> InjectContext<T>.injectSubtitleTextColor(@ColorRes resId: Int): InjectContext<T> {
-    val colorList = reader.getColorListOrNull(resId)
-    if (colorList != null) {
-      component.setSubtitleTextColor(colorList)
-    } else {
-      val color = reader.getColorOrNull(resId)
-      color?.let(component::setSubtitleTextColor)
+  fun <T: Toolbar> InjectContext<T>.injectCollapseIcon(@DrawableRes resId: Int): InjectContext<T> {
+    val resultId = reader.getDrawableResId(resId)
+    component.setCollapseIcon(resultId)
+    return this
+  }
+
+  /**
+   * Inject overflow icon with [resId]
+   */
+  fun <T: Toolbar> InjectContext<T>.injectOverflowIcon(@DrawableRes resId: Int): InjectContext<T> {
+    val drawable = reader.getDrawableOrNull(resId)
+    if (drawable != null) {
+      component.overflowIcon = drawable
     }
     return this
   }
@@ -80,6 +116,20 @@ class ToolbarContext {
     } else {
       val color = reader.getColorOrNull(resId)
       color?.let(component::setTitleTextColor)
+    }
+    return this
+  }
+
+  /**
+   * Inject subtitle text color with [resId]
+   */
+  fun <T: Toolbar> InjectContext<T>.injectSubtitleTextColor(@ColorRes resId: Int): InjectContext<T> {
+    val colorList = reader.getColorListOrNull(resId)
+    if (colorList != null) {
+      component.setSubtitleTextColor(colorList)
+    } else {
+      val color = reader.getColorOrNull(resId)
+      color?.let(component::setSubtitleTextColor)
     }
     return this
   }

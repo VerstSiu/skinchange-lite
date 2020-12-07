@@ -18,33 +18,23 @@
 package com.ijoic.skinchange.lite.context.compat
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.StyleRes
-import androidx.appcompat.widget.ActionMenuView
+import androidx.appcompat.widget.LinearLayoutCompat
 import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * ActionMenuView context
+ * LinearLayoutCompat context
  *
- * @author verstsiu created at 2020-12-05 20:54
+ * @author verstsiu created at 2020-12-07 20:00
  */
-class ActionMenuViewContext {
+class LinearLayoutCompatContext {
 
   /**
-   * Inject popup theme with [resId]
+   * Inject button with [resId]
    */
-  fun <T: ActionMenuView> InjectContext<T>.injectPopupTheme(@StyleRes resId: Int): InjectContext<T> {
-    val resultId = reader.getStyleResId(resId)
-    component.popupTheme = resultId
-    return this
-  }
-
-  /**
-   * Inject overflow icon with [resId]
-   */
-  fun <T: ActionMenuView> InjectContext<T>.injectOverflowIcon(@DrawableRes resId: Int): InjectContext<T> {
+  fun <T: LinearLayoutCompat> InjectContext<T>.injectButton(@DrawableRes resId: Int): InjectContext<T> {
     val drawable = reader.getDrawableOrNull(resId)
     if (drawable != null) {
-      component.overflowIcon = drawable
+      component.dividerDrawable = drawable
     }
     return this
   }

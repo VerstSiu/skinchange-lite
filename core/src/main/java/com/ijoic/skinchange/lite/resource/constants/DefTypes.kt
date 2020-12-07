@@ -28,6 +28,7 @@ internal object DefTypes {
   const val COLOR = "color"
   const val DRAWABLE = "drawable"
   const val LAYOUT = "layout"
+  const val MENU = "menu"
   const val MIPMAP = "mipmap"
   const val STYLE = "style"
 }

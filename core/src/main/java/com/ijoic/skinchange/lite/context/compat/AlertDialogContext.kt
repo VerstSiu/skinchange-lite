@@ -17,6 +17,7 @@
  */
 package com.ijoic.skinchange.lite.context.compat
 
+import android.content.DialogInterface
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AlertDialog
 import com.ijoic.skinchange.lite.context.InjectContext
@@ -27,6 +28,19 @@ import com.ijoic.skinchange.lite.context.InjectContext
  * @author verstsiu created at 2020-12-05 19:46
  */
 class AlertDialogContext {
+
+  /**
+   * Inject button with [resId]
+   */
+  fun <T: AlertDialog> InjectContext<T>.injectButton(
+    whichButton: Int, text: CharSequence, @DrawableRes resId: Int, listener: DialogInterface.OnClickListener
+  ): InjectContext<T> {
+    val drawable = reader.getDrawableOrNull(resId)
+    if (drawable != null) {
+      component.setButton(whichButton, text, drawable, listener)
+    }
+    return this
+  }
 
   /**
    * Inject icon with [resId]

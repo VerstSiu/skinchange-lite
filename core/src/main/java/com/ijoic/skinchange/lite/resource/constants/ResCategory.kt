@@ -57,6 +57,11 @@ internal enum class ResCategory(
   LAYOUT(arrayOf(DefTypes.LAYOUT)),
 
   /**
+   * Menu
+   */
+  MENU(arrayOf(DefTypes.MENU)),
+
+  /**
    * Style
    */
   STYLE(arrayOf(DefTypes.STYLE))

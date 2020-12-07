@@ -17,34 +17,28 @@
  */
 package com.ijoic.skinchange.lite.context.compat
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StyleRes
-import androidx.appcompat.widget.ActionMenuView
+import android.content.res.ColorStateList
+import androidx.annotation.ColorRes
+import androidx.core.widget.TintableCompoundButton
 import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * ActionMenuView context
+ * TintableCompoundButton context
  *
- * @author verstsiu created at 2020-12-05 20:54
+ * @author verstsiu created at 2020-12-07 19:48
  */
-class ActionMenuViewContext {
+class TintableCompoundButtonContext {
 
   /**
-   * Inject popup theme with [resId]
+   * Inject background tint list with [resId]
    */
-  fun <T: ActionMenuView> InjectContext<T>.injectPopupTheme(@StyleRes resId: Int): InjectContext<T> {
-    val resultId = reader.getStyleResId(resId)
-    component.popupTheme = resultId
-    return this
-  }
-
-  /**
-   * Inject overflow icon with [resId]
-   */
-  fun <T: ActionMenuView> InjectContext<T>.injectOverflowIcon(@DrawableRes resId: Int): InjectContext<T> {
-    val drawable = reader.getDrawableOrNull(resId)
-    if (drawable != null) {
-      component.overflowIcon = drawable
+  fun <T: TintableCompoundButton> InjectContext<T>.injectBackgroundTintList(@ColorRes resId: Int): InjectContext<T> {
+    val colorList = reader.getColorListOrNull(resId)
+    if (colorList != null) {
+      component.supportButtonTintList = colorList
+    } else {
+      val color = reader.getColorOrNull(resId)
+      color?.let { component.supportButtonTintList = ColorStateList.valueOf(it) }
     }
     return this
   }

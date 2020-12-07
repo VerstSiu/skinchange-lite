@@ -57,6 +57,15 @@ class ActionBarContext {
   }
 
   /**
+   * Inject home as up indicator with [resId]
+   */
+  fun <T: ActionBar> InjectContext<T>.injectHomeAsUpIndicator(@DrawableRes resId: Int): InjectContext<T> {
+    val resultId = reader.getDrawableResId(resId)
+    component.setHomeAsUpIndicator(resultId)
+    return this
+  }
+
+  /**
    * Inject split background drawable with [resId]
    */
   fun <T: ActionBar> InjectContext<T>.injectSplitBackgroundDrawable(@DrawableRes resId: Int): InjectContext<T> {

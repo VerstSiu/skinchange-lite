@@ -17,35 +17,23 @@
  */
 package com.ijoic.skinchange.lite.context.compat
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StyleRes
-import androidx.appcompat.widget.ActionMenuView
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatDialog
 import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * ActionMenuView context
+ * AppCompatDialog context
  *
- * @author verstsiu created at 2020-12-05 20:54
+ * @author verstsiu created at 2020-12-07 19:27
  */
-class ActionMenuViewContext {
+class AppCompatDialogContext {
 
   /**
-   * Inject popup theme with [resId]
+   * Inject button with [resId]
    */
-  fun <T: ActionMenuView> InjectContext<T>.injectPopupTheme(@StyleRes resId: Int): InjectContext<T> {
-    val resultId = reader.getStyleResId(resId)
-    component.popupTheme = resultId
-    return this
-  }
-
-  /**
-   * Inject overflow icon with [resId]
-   */
-  fun <T: ActionMenuView> InjectContext<T>.injectOverflowIcon(@DrawableRes resId: Int): InjectContext<T> {
-    val drawable = reader.getDrawableOrNull(resId)
-    if (drawable != null) {
-      component.overflowIcon = drawable
-    }
+  fun <T: AppCompatDialog> InjectContext<T>.injectButton(@LayoutRes resId: Int): InjectContext<T> {
+    val resultId = reader.getLayoutResId(resId)
+    component.setContentView(resultId)
     return this
   }
 

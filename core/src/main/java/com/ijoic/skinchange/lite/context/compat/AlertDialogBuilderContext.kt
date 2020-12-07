@@ -17,6 +17,7 @@
  */
 package com.ijoic.skinchange.lite.context.compat
 
+import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AlertDialog
 import com.ijoic.skinchange.lite.context.InjectContext
@@ -34,6 +35,15 @@ class AlertDialogBuilderContext {
   fun <T: AlertDialog.Builder> InjectContext<T>.injectIcon(@DrawableRes resId: Int): InjectContext<T> {
     val resultId = reader.getDrawableResId(resId)
     component.setIcon(resultId)
+    return this
+  }
+
+  /**
+   * Inject icon attribute with [resId]
+   */
+  fun <T: AlertDialog.Builder> InjectContext<T>.injectIconAttribute(@AttrRes resId: Int): InjectContext<T> {
+    val resultId = reader.getAttrResId(resId)
+    component.setIconAttribute(resultId)
     return this
   }
 

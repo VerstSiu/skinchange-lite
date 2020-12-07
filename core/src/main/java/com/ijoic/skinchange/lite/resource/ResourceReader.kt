@@ -102,6 +102,11 @@ abstract class ResourceReader internal constructor(private val context: Context)
   abstract fun getLayoutResId(@LayoutRes resId: Int): Int
 
   /**
+   * Returns mapped menu resId
+   */
+  abstract fun getMenuResId(@MenuRes resId: Int): Int
+
+  /**
    * Returns mapped style resId
    */
   abstract fun getStyleResId(@StyleRes resId: Int): Int

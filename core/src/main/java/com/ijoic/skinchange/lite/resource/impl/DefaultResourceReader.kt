@@ -57,6 +57,10 @@ internal class DefaultResourceReader(context: Context) : ResourceReader(context)
     return resId
   }
 
+  override fun getMenuResId(resId: Int): Int {
+    return resId
+  }
+
   override fun getStyleResId(resId: Int): Int {
     return resId
   }
