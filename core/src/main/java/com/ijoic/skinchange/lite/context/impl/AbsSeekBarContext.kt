@@ -15,19 +15,26 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.resource.constants
+package com.ijoic.skinchange.lite.context.impl
+
+import android.widget.AbsSeekBar
+import androidx.annotation.DrawableRes
+import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * Defined resource types
+ * SeekBar context
  *
- * @author verstsiu created at 2020-12-03 12:04
+ * @author verstsiu created at 2020-12-05 20:21
  */
-internal object DefTypes {
-  const val ATTR = "attr"
-  const val BOOL = "bool"
-  const val COLOR = "color"
-  const val DRAWABLE = "drawable"
-  const val LAYOUT = "layout"
-  const val MIPMAP = "mipmap"
-  const val STYLE = "style"
+class AbsSeekBarContext {
+  /**
+   * Inject thumb with [resId]
+   */
+  fun <T: AbsSeekBar> InjectContext<T>.injectThumb(@DrawableRes resId: Int): InjectContext<T> {
+    val drawable = reader.getDrawableOrNull(resId)
+    if (drawable != null) {
+      component.thumb = drawable
+    }
+    return this
+  }
 }

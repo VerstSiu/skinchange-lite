@@ -15,19 +15,26 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.resource.constants
+package com.ijoic.skinchange.lite.context.impl
+
+import android.widget.TabHost
+import androidx.annotation.DrawableRes
+import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * Defined resource types
+ * TabSpec context
  *
- * @author verstsiu created at 2020-12-03 12:04
+ * @author verstsiu created at 2020-12-07 17:54
  */
-internal object DefTypes {
-  const val ATTR = "attr"
-  const val BOOL = "bool"
-  const val COLOR = "color"
-  const val DRAWABLE = "drawable"
-  const val LAYOUT = "layout"
-  const val MIPMAP = "mipmap"
-  const val STYLE = "style"
+class TabSpecContext {
+  /**
+   * Inject indicator with [resId]
+   */
+  fun <T: TabHost.TabSpec> InjectContext<T>.injectIndicator(label: CharSequence, @DrawableRes resId: Int): InjectContext<T> {
+    val drawable = reader.getDrawableOrNull(resId)
+    if (drawable != null) {
+      component.setIndicator(label, drawable)
+    }
+    return this
+  }
 }

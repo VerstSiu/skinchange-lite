@@ -18,36 +18,22 @@
 package com.ijoic.skinchange.lite.view.attr.impl
 
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.ListView
-import android.widget.TabWidget
+import android.widget.Switch
 import com.ijoic.skinchange.lite.resource.ResourceReader
 import com.ijoic.skinchange.lite.view.attr.AttrType
 
 /**
- * Divider attribute type
+ * Switch text appearance attribute type
  *
- * @author verstsiu created at 2020-12-05 18:27
+ * @author verstsiu created at 2020-12-05 15:46
  */
-internal object DividerAttrType : AttrType {
+internal object SwitchTextAppearanceAttrType : AttrType {
   override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
-    when (view) {
-      is ListView -> {
-        val drawable = reader.getDrawableOrNull(resName) ?: return false
-        view.divider = drawable
-        return true
-      }
-      is LinearLayout -> {
-        val drawable = reader.getDrawableOrNull(resName) ?: return false
-        view.dividerDrawable = drawable
-        return true
-      }
-      is TabWidget -> {
-        val resId = reader.getDrawableResIdOrNull(resName) ?: return false
-        view.setDividerDrawable(resId)
-        return true
-      }
+    if (view !is Switch) {
+      return false
     }
-    return false
+    val resId = reader.getStyleResIdOrNull(resName) ?: return false
+    view.setSwitchTextAppearance(view.context, resId)
+    return true
   }
 }

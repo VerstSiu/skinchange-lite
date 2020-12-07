@@ -22,9 +22,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.ijoic.skinchange.lite.SkinManager
 import com.ijoic.skinchange.lite.app.R
 import com.ijoic.skinchange.lite.app.databinding.ActivityViewBaseBinding
-import com.ijoic.skinchange.lite.context.impl.WindowInjectContext.injectStatusBarColor
-import com.ijoic.skinchange.lite.context.impl.WindowInjectContext.injectStatusBarThemeLight
-import com.ijoic.skinchange.lite.context.impl.WindowInjectContext.injectWindowBackground
+import com.ijoic.skinchange.lite.context.impl.ActivityInjectContext.injectStatusBarColor
+import com.ijoic.skinchange.lite.context.impl.ActivityInjectContext.injectStatusBarThemeLight
+import com.ijoic.skinchange.lite.context.impl.ActivityInjectContext.injectWindowBackground
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

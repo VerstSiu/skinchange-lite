@@ -46,6 +46,9 @@ internal object DefaultAttrModule : AttrModule {
   private const val SHADOW_COLOR = "shadowColor"
   private const val SRC = "src"
   private const val SUBTITLE_TEXT_COLOR = "subtitleTextColor"
+  private const val SWITCH_TEXT_APPEARANCE = "switchTextAppearance"
+  private const val TAB_STRIP_LEFT = "tabStripLeft"
+  private const val TAB_STRIP_RIGHT = "tabStripRight"
   private const val TEXT_COLOR = "textColor"
   private const val TEXT_COLOR_HIGHLIGHT = "textColorHighlight"
   private const val TEXT_COLOR_HINT = "textColorHint"
@@ -74,6 +77,9 @@ internal object DefaultAttrModule : AttrModule {
     SHADOW_COLOR to ShadowColorAttrType,
     SRC to SrcAttrType,
     SUBTITLE_TEXT_COLOR to SubtitleTextColorAttrType,
+    SWITCH_TEXT_APPEARANCE to SwitchTextAppearanceAttrType,
+    TAB_STRIP_LEFT to TabStripLeftAttrType,
+    TAB_STRIP_RIGHT to TabStripRightAttrType,
     TEXT_COLOR to TextColorAttrType,
     TEXT_COLOR_HIGHLIGHT to TextColorHighlightAttrType,
     TEXT_COLOR_HINT to TextColorHintAttrType,

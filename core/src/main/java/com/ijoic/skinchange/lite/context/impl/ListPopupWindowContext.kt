@@ -17,33 +17,34 @@
  */
 package com.ijoic.skinchange.lite.context.impl
 
-import android.widget.AbsListView
-import androidx.annotation.ColorRes
+import android.widget.ListPopupWindow
 import androidx.annotation.DrawableRes
 import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * AbsListView context
+ * ListPopupWindow context
  *
- * @author verstsiu created at 2020-12-05 20:42
+ * @author verstsiu created at 2020-12-07 17:17
  */
-class AbsListViewContext {
+class ListPopupWindowContext {
   /**
    * Inject list selector with [resId]
    */
-  fun <T: AbsListView> InjectContext<T>.injectSelector(@DrawableRes resId: Int): InjectContext<T> {
-    val resultId = reader.getDrawableResId(resId)
-    component.setSelector(resultId)
+  fun <T: ListPopupWindow> InjectContext<T>.injectListSelector(@DrawableRes resId: Int): InjectContext<T> {
+    val drawable = reader.getDrawableOrNull(resId)
+    if (drawable != null) {
+      component.setListSelector(drawable)
+    }
     return this
   }
 
   /**
-   * Inject cache color hint with [resId]
+   * Inject background with [resId]
    */
-  fun <T: AbsListView> InjectContext<T>.injectCacheColorHint(@ColorRes resId: Int): InjectContext<T> {
-    val color = reader.getColorOrNull(resId)
-    if (color != null) {
-      component.cacheColorHint = color
+  fun <T: ListPopupWindow> InjectContext<T>.injectBackground(@DrawableRes resId: Int): InjectContext<T> {
+    val drawable = reader.getDrawableOrNull(resId)
+    if (drawable != null) {
+      component.setBackgroundDrawable(drawable)
     }
     return this
   }

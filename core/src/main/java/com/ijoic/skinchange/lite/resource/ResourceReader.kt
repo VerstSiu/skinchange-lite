@@ -20,10 +20,7 @@ package com.ijoic.skinchange.lite.resource
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
-import androidx.annotation.AnyRes
-import androidx.annotation.BoolRes
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
+import androidx.annotation.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.res.ResourcesCompat
 import com.ijoic.skinchange.lite.resource.constants.ResCategory
@@ -92,7 +89,22 @@ abstract class ResourceReader internal constructor(private val context: Context)
   /**
    * Returns mapped drawable resId
    */
+  abstract fun getAttrResId(@AttrRes resId: Int): Int
+
+  /**
+   * Returns mapped drawable resId
+   */
   abstract fun getDrawableResId(@DrawableRes resId: Int): Int
+
+  /**
+   * Returns mapped layout resId
+   */
+  abstract fun getLayoutResId(@LayoutRes resId: Int): Int
+
+  /**
+   * Returns mapped style resId
+   */
+  abstract fun getStyleResId(@StyleRes resId: Int): Int
 
   /* Get Resource ID by resId :END */
 
@@ -103,6 +115,13 @@ abstract class ResourceReader internal constructor(private val context: Context)
    */
   fun getDrawableResIdOrNull(resName: String): Int? {
     return measureResIdOrNull(wrapResName(resName), ResCategory.DRAWABLE)
+  }
+
+  /**
+   * Returns mapped style resId
+   */
+  fun getStyleResIdOrNull(resName: String): Int? {
+    return measureResIdOrNull(wrapResName(resName), ResCategory.STYLE)
   }
 
   /* Get Resource ID by resName :END */

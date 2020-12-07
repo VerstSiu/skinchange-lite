@@ -15,19 +15,26 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.resource.constants
+package com.ijoic.skinchange.lite.context.impl
+
+import android.widget.ArrayAdapter
+import androidx.annotation.LayoutRes
+import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * Defined resource types
+ * ArrayAdapter context
  *
- * @author verstsiu created at 2020-12-03 12:04
+ * @author verstsiu created at 2020-12-07 16:41
  */
-internal object DefTypes {
-  const val ATTR = "attr"
-  const val BOOL = "bool"
-  const val COLOR = "color"
-  const val DRAWABLE = "drawable"
-  const val LAYOUT = "layout"
-  const val MIPMAP = "mipmap"
-  const val STYLE = "style"
+class ArrayAdapterContext {
+
+  /**
+   * Inject drop down view with [resId]
+   */
+  fun <T: ArrayAdapter<*>> InjectContext<T>.injectDropDownView(@LayoutRes resId: Int): InjectContext<T> {
+    val resultId = reader.getLayoutResId(resId)
+    component.setDropDownViewResource(resultId)
+    return this
+  }
+
 }

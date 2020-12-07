@@ -17,7 +17,9 @@
  */
 package com.ijoic.skinchange.lite.context.impl
 
+import android.graphics.PorterDuff
 import android.widget.ImageView
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import com.ijoic.skinchange.lite.context.InjectContext
 
@@ -33,6 +35,21 @@ class ImageViewContext {
   fun <T: ImageView> InjectContext<T>.injectImageResource(@DrawableRes resId: Int): InjectContext<T> {
     val resultId = reader.getDrawableResId(resId)
     component.setImageResource(resultId)
+    return this
+  }
+
+  /**
+   * Inject image resource with [resId]
+   */
+  fun <T: ImageView> InjectContext<T>.injectColorFilter(@ColorRes resId: Int, mode: PorterDuff.Mode? = null): InjectContext<T> {
+    val color = reader.getColorOrNull(resId)
+    if (color != null) {
+      if (mode != null) {
+        component.setColorFilter(color, mode)
+      } else {
+        component.setColorFilter(color)
+      }
+    }
     return this
   }
 }

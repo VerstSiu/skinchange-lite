@@ -53,8 +53,20 @@ internal class SuffixResourceReader(
     return fetchDrawableOrNull(resultId)
   }
 
+  override fun getAttrResId(resId: Int): Int {
+    return measureResIdOrNull(resId, ResCategory.ATTR) ?: resId
+  }
+
   override fun getDrawableResId(resId: Int): Int {
     return measureResIdOrNull(resId, ResCategory.DRAWABLE) ?: resId
+  }
+
+  override fun getLayoutResId(resId: Int): Int {
+    return measureResIdOrNull(resId, ResCategory.LAYOUT) ?: resId
+  }
+
+  override fun getStyleResId(resId: Int): Int {
+    return measureResIdOrNull(resId, ResCategory.STYLE) ?: resId
   }
 
   override fun wrapResName(resName: String): String {

@@ -17,34 +17,33 @@
  */
 package com.ijoic.skinchange.lite.context.impl
 
-import android.widget.AbsListView
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
+import android.widget.CalendarView
+import androidx.annotation.StyleRes
 import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * AbsListView context
+ * CalendarView context
  *
- * @author verstsiu created at 2020-12-05 20:42
+ * @author verstsiu created at 2020-12-07 16:46
  */
-class AbsListViewContext {
+class CalendarViewContext {
+
   /**
-   * Inject list selector with [resId]
+   * Inject weekday text appearance with [resId]
    */
-  fun <T: AbsListView> InjectContext<T>.injectSelector(@DrawableRes resId: Int): InjectContext<T> {
-    val resultId = reader.getDrawableResId(resId)
-    component.setSelector(resultId)
+  fun <T: CalendarView> InjectContext<T>.injectWeekDayTextAppearance(@StyleRes resId: Int): InjectContext<T> {
+    val resultId = reader.getStyleResId(resId)
+    component.weekDayTextAppearance = resultId
     return this
   }
 
   /**
-   * Inject cache color hint with [resId]
+   * Inject date text appearance with [resId]
    */
-  fun <T: AbsListView> InjectContext<T>.injectCacheColorHint(@ColorRes resId: Int): InjectContext<T> {
-    val color = reader.getColorOrNull(resId)
-    if (color != null) {
-      component.cacheColorHint = color
-    }
+  fun <T: CalendarView> InjectContext<T>.injectDateTextAppearance(@StyleRes resId: Int): InjectContext<T> {
+    val resultId = reader.getStyleResId(resId)
+    component.dateTextAppearance = resultId
     return this
   }
+
 }

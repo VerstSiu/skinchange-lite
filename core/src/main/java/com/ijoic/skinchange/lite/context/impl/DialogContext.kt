@@ -17,34 +17,34 @@
  */
 package com.ijoic.skinchange.lite.context.impl
 
-import android.widget.AbsListView
-import androidx.annotation.ColorRes
+import android.app.Dialog
 import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
 import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * AbsListView context
+ * Dialog context
  *
- * @author verstsiu created at 2020-12-05 20:42
+ * @author verstsiu created at 2020-12-07 15:00
  */
-class AbsListViewContext {
+class DialogContext {
+
   /**
-   * Inject list selector with [resId]
+   * Inject content view with [resId]
    */
-  fun <T: AbsListView> InjectContext<T>.injectSelector(@DrawableRes resId: Int): InjectContext<T> {
-    val resultId = reader.getDrawableResId(resId)
-    component.setSelector(resultId)
+  fun <T: Dialog> InjectContext<T>.injectContentView(@LayoutRes resId: Int): InjectContext<T> {
+    val resultId = reader.getLayoutResId(resId)
+    component.setContentView(resultId)
     return this
   }
 
   /**
-   * Inject cache color hint with [resId]
+   * Inject feature drawable with [resId]
    */
-  fun <T: AbsListView> InjectContext<T>.injectCacheColorHint(@ColorRes resId: Int): InjectContext<T> {
-    val color = reader.getColorOrNull(resId)
-    if (color != null) {
-      component.cacheColorHint = color
-    }
+  fun <T: Dialog> InjectContext<T>.injectFeatureDrawable(featureId: Int, @DrawableRes resId: Int): InjectContext<T> {
+    val resultId = reader.getDrawableResId(resId)
+    component.setFeatureDrawableResource(featureId, resultId)
     return this
   }
+
 }

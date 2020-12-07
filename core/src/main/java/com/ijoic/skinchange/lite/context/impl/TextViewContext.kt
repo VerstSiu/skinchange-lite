@@ -29,6 +29,18 @@ import com.ijoic.skinchange.lite.util.TextViewHelper
  * @author verstsiu created at 2020-12-05 20:21
  */
 class TextViewContext {
+
+  /**
+   * Inject error with [resId]
+   */
+  fun <T: TextView> InjectContext<T>.injectError(error: CharSequence, @DrawableRes resId: Int): InjectContext<T> {
+    val drawable = reader.getDrawableOrNull(resId)
+    if (drawable != null) {
+      component.setError(error, drawable)
+    }
+    return this
+  }
+
   /**
    * Inject drawable left with [resId]
    */

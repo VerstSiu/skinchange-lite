@@ -45,7 +45,19 @@ internal class DefaultResourceReader(context: Context) : ResourceReader(context)
     return fetchDrawableOrNull(resId)
   }
 
+  override fun getAttrResId(resId: Int): Int {
+    return resId
+  }
+
   override fun getDrawableResId(resId: Int): Int {
+    return resId
+  }
+
+  override fun getLayoutResId(resId: Int): Int {
+    return resId
+  }
+
+  override fun getStyleResId(resId: Int): Int {
     return resId
   }
 

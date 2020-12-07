@@ -15,19 +15,25 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.resource.constants
+package com.ijoic.skinchange.lite.view.attr.impl
+
+import android.view.View
+import android.widget.TabWidget
+import com.ijoic.skinchange.lite.resource.ResourceReader
+import com.ijoic.skinchange.lite.view.attr.AttrType
 
 /**
- * Defined resource types
+ * Tab strip right attribute type
  *
- * @author verstsiu created at 2020-12-03 12:04
+ * @author verstsiu created at 2020-12-07 18:03
  */
-internal object DefTypes {
-  const val ATTR = "attr"
-  const val BOOL = "bool"
-  const val COLOR = "color"
-  const val DRAWABLE = "drawable"
-  const val LAYOUT = "layout"
-  const val MIPMAP = "mipmap"
-  const val STYLE = "style"
+internal object TabStripRightAttrType : AttrType {
+  override fun inject(view: View, resName: String, reader: ResourceReader): Boolean {
+    if (view !is TabWidget) {
+      return false
+    }
+    val resId = reader.getDrawableResIdOrNull(resName) ?: return false
+    view.setRightStripDrawable(resId)
+    return true
+  }
 }

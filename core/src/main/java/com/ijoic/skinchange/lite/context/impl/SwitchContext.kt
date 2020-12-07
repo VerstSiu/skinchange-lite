@@ -17,8 +17,10 @@
  */
 package com.ijoic.skinchange.lite.context.impl
 
+import android.content.Context
 import android.widget.Switch
 import androidx.annotation.DrawableRes
+import androidx.annotation.StyleRes
 import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
@@ -27,6 +29,15 @@ import com.ijoic.skinchange.lite.context.InjectContext
  * @author verstsiu created at 2020-12-05 20:38
  */
 class SwitchContext {
+  /**
+   * Inject switch text appearance with [resId]
+   */
+  fun <T: Switch> InjectContext<T>.injectSwitchTextAppearance(context: Context, @StyleRes resId: Int): InjectContext<T> {
+    val resultId = reader.getStyleResId(resId)
+    component.setSwitchTextAppearance(context, resultId)
+    return this
+  }
+
   /**
    * Inject thumb with [resId]
    */

@@ -17,24 +17,33 @@
  */
 package com.ijoic.skinchange.lite.context.impl
 
-import android.widget.SeekBar
+import android.view.SubMenu
 import androidx.annotation.DrawableRes
 import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * SeekBar context
+ * SubMenu context
  *
- * @author verstsiu created at 2020-12-05 20:21
+ * @author verstsiu created at 2020-12-07 15:44
  */
-class SeekBarContext {
+class SubMenuContext {
+
   /**
-   * Inject thumb with [resId]
+   * Inject header icon with [resId]
    */
-  fun <T: SeekBar> InjectContext<T>.injectThumb(@DrawableRes resId: Int): InjectContext<T> {
-    val drawable = reader.getDrawableOrNull(resId)
-    if (drawable != null) {
-      component.thumb = drawable
-    }
+  fun <T: SubMenu> InjectContext<T>.injectHeaderIcon(@DrawableRes resId: Int): InjectContext<T> {
+    val resultId = reader.getDrawableResId(resId)
+    component.setHeaderIcon(resultId)
     return this
   }
+
+  /**
+   * Inject icon with [resId]
+   */
+  fun <T: SubMenu> InjectContext<T>.injectIcon(@DrawableRes resId: Int): InjectContext<T> {
+    val resultId = reader.getDrawableResId(resId)
+    component.setIcon(resultId)
+    return this
+  }
+
 }

@@ -17,45 +17,45 @@
  */
 package com.ijoic.skinchange.lite.context.impl
 
-import android.widget.ListView
+import android.widget.ExpandableListView
 import androidx.annotation.DrawableRes
 import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * ListView context
+ * ExpandableListView context
  *
- * @author verstsiu created at 2020-12-05 20:43
+ * @author verstsiu created at 2020-12-07 17:02
  */
-class ListViewContext {
+class ExpandableListViewContext {
   /**
-   * Inject divider with [resId]
+   * Inject child divider with [resId]
    */
-  fun <T: ListView> InjectContext<T>.injectDivider(@DrawableRes resId: Int): InjectContext<T> {
+  fun <T: ExpandableListView> InjectContext<T>.injectChildDivider(@DrawableRes resId: Int): InjectContext<T> {
     val drawable = reader.getDrawableOrNull(resId)
     if (drawable != null) {
-      component.divider = drawable
+      component.setChildDivider(drawable)
     }
     return this
   }
 
   /**
-   * Inject overscroll header with [resId]
+   * Inject child indicator with [resId]
    */
-  fun <T: ListView> InjectContext<T>.injectOverscrollHeader(@DrawableRes resId: Int): InjectContext<T> {
+  fun <T: ExpandableListView> InjectContext<T>.injectChildIndicator(@DrawableRes resId: Int): InjectContext<T> {
     val drawable = reader.getDrawableOrNull(resId)
     if (drawable != null) {
-      component.overscrollHeader = drawable
+      component.setChildIndicator(drawable)
     }
     return this
   }
 
   /**
-   * Inject overscroll footer with [resId]
+   * Inject group indicator with [resId]
    */
-  fun <T: ListView> InjectContext<T>.injectOverscrollFooter(@DrawableRes resId: Int): InjectContext<T> {
+  fun <T: ExpandableListView> InjectContext<T>.injectGroupIndicator(@DrawableRes resId: Int): InjectContext<T> {
     val drawable = reader.getDrawableOrNull(resId)
     if (drawable != null) {
-      component.overscrollFooter = drawable
+      component.setGroupIndicator(drawable)
     }
     return this
   }

@@ -15,19 +15,26 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.resource.constants
+package com.ijoic.skinchange.lite.context.impl
+
+import android.view.ContextMenu
+import androidx.annotation.DrawableRes
+import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * Defined resource types
+ * ContextMenu context
  *
- * @author verstsiu created at 2020-12-03 12:04
+ * @author verstsiu created at 2020-12-07 15:35
  */
-internal object DefTypes {
-  const val ATTR = "attr"
-  const val BOOL = "bool"
-  const val COLOR = "color"
-  const val DRAWABLE = "drawable"
-  const val LAYOUT = "layout"
-  const val MIPMAP = "mipmap"
-  const val STYLE = "style"
+class ContextMenuContext {
+
+  /**
+   * Inject header icon with [resId]
+   */
+  fun <T: ContextMenu> InjectContext<T>.injectHeaderIcon(@DrawableRes resId: Int): InjectContext<T> {
+    val resultId = reader.getDrawableResId(resId)
+    component.setHeaderIcon(resultId)
+    return this
+  }
+
 }

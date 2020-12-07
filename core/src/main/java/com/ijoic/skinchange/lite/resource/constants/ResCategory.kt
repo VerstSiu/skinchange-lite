@@ -27,14 +27,14 @@ internal enum class ResCategory(
 ) {
 
   /**
-   * Drawable
+   * Attr
    */
-  DRAWABLE(arrayOf(DefTypes.MIPMAP, DefTypes.DRAWABLE, DefTypes.COLOR)),
+  ATTR(arrayOf(DefTypes.ATTR)),
 
   /**
-   * Color list
+   * Bool
    */
-  COLOR_LIST(arrayOf(DefTypes.DRAWABLE, DefTypes.COLOR)),
+  BOOL(arrayOf(DefTypes.BOOL)),
 
   /**
    * Color
@@ -42,8 +42,23 @@ internal enum class ResCategory(
   COLOR(arrayOf(DefTypes.COLOR)),
 
   /**
-   * Bool
+   * Color list
    */
-  BOOL(arrayOf(DefTypes.BOOL))
+  COLOR_LIST(arrayOf(DefTypes.DRAWABLE, DefTypes.COLOR)),
+
+  /**
+   * Drawable
+   */
+  DRAWABLE(arrayOf(DefTypes.MIPMAP, DefTypes.DRAWABLE, DefTypes.COLOR)),
+
+  /**
+   * Layout
+   */
+  LAYOUT(arrayOf(DefTypes.LAYOUT)),
+
+  /**
+   * Style
+   */
+  STYLE(arrayOf(DefTypes.STYLE))
 
 }

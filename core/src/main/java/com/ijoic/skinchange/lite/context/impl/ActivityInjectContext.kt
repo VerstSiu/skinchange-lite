@@ -26,11 +26,11 @@ import com.ijoic.skinchange.lite.context.InjectContext
 import com.ijoic.skinchange.lite.util.Flags
 
 /**
- * Window inject context
+ * Activity inject context
  *
  * @author verstsiu created at 2020-12-02 20:16
  */
-object WindowInjectContext {
+object ActivityInjectContext {
   /**
    * Inject status bar color with [resId]
    */

@@ -15,19 +15,24 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.resource.constants
+package com.ijoic.skinchange.lite.context.impl
+
+import android.widget.ImageSwitcher
+import androidx.annotation.DrawableRes
+import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * Defined resource types
+ * ImageSwitcher context
  *
- * @author verstsiu created at 2020-12-03 12:04
+ * @author verstsiu created at 2020-12-07 17:08
  */
-internal object DefTypes {
-  const val ATTR = "attr"
-  const val BOOL = "bool"
-  const val COLOR = "color"
-  const val DRAWABLE = "drawable"
-  const val LAYOUT = "layout"
-  const val MIPMAP = "mipmap"
-  const val STYLE = "style"
+class ImageSwitcherContext {
+  /**
+   * Inject image resource with [resId]
+   */
+  fun <T: ImageSwitcher> InjectContext<T>.injectImageResource(@DrawableRes resId: Int): InjectContext<T> {
+    val resultId = reader.getDrawableResId(resId)
+    component.setImageResource(resultId)
+    return this
+  }
 }

@@ -17,34 +17,40 @@
  */
 package com.ijoic.skinchange.lite.context.impl
 
-import android.widget.AbsListView
-import androidx.annotation.ColorRes
+import android.widget.TabWidget
 import androidx.annotation.DrawableRes
 import com.ijoic.skinchange.lite.context.InjectContext
 
 /**
- * AbsListView context
+ * TabWidget context
  *
- * @author verstsiu created at 2020-12-05 20:42
+ * @author verstsiu created at 2020-12-07 17:54
  */
-class AbsListViewContext {
+class TabWidgetContext {
   /**
-   * Inject list selector with [resId]
+   * Inject divider drawable with [resId]
    */
-  fun <T: AbsListView> InjectContext<T>.injectSelector(@DrawableRes resId: Int): InjectContext<T> {
+  fun <T: TabWidget> InjectContext<T>.injectDividerDrawable(@DrawableRes resId: Int): InjectContext<T> {
     val resultId = reader.getDrawableResId(resId)
-    component.setSelector(resultId)
+    component.setDividerDrawable(resultId)
     return this
   }
 
   /**
-   * Inject cache color hint with [resId]
+   * Inject left scrip drawable with [resId]
    */
-  fun <T: AbsListView> InjectContext<T>.injectCacheColorHint(@ColorRes resId: Int): InjectContext<T> {
-    val color = reader.getColorOrNull(resId)
-    if (color != null) {
-      component.cacheColorHint = color
-    }
+  fun <T: TabWidget> InjectContext<T>.injectLeftStripDrawable(@DrawableRes resId: Int): InjectContext<T> {
+    val resultId = reader.getDrawableResId(resId)
+    component.setLeftStripDrawable(resultId)
+    return this
+  }
+
+  /**
+   * Inject right scrip drawable with [resId]
+   */
+  fun <T: TabWidget> InjectContext<T>.injectRightStripDrawable(@DrawableRes resId: Int): InjectContext<T> {
+    val resultId = reader.getDrawableResId(resId)
+    component.setRightStripDrawable(resultId)
     return this
   }
 }
