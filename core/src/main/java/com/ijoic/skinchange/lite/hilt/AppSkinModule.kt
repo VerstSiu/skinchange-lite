@@ -27,17 +27,17 @@ import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ActivityContext
 
 /**
- * Default skin module
+ * Custom skin module
  *
- * @author verstsiu created at 2020-12-07 10:59
+ * @author verstsiu created at 2020-12-08 09:49
  */
 @Module
 @InstallIn(ActivityComponent::class)
-object DefaultSkinModule {
+object AppSkinModule {
 
-  @DefaultSkinFactory
+  @AppSkinFactory
   @Provides
-  fun provideSkinManager(@ActivityContext context: Context, @DefaultSkinFactory factory: AttrTypeFactory): SkinManager {
+  fun provideSkinManager(@ActivityContext context: Context, @AppSkinFactory factory: AttrTypeFactory): SkinManager {
     return SkinManager(context, factory)
   }
 

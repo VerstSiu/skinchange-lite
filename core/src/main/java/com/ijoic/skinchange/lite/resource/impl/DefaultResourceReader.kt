@@ -49,6 +49,14 @@ internal class DefaultResourceReader(context: Context) : ResourceReader(context)
     return resId
   }
 
+  override fun getColorResId(resId: Int): Int {
+    return resId
+  }
+
+  override fun getColorListResId(resId: Int): Int {
+    return resId
+  }
+
   override fun getDrawableResId(resId: Int): Int {
     return resId
   }

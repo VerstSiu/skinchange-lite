@@ -15,7 +15,7 @@
  *  limitations under the License.
  *
  */
-package com.ijoic.skinchange.lite.hilt
+package com.ijoic.skinchange.lite.material.hilt
 
 import android.content.Context
 import com.ijoic.skinchange.lite.SkinManager
@@ -27,18 +27,16 @@ import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ActivityContext
 
 /**
- * Default skin module
+ * Material skin module
  *
- * @author verstsiu created at 2020-12-07 10:59
+ * @author verstsiu created at 2020-12-07 22:39
  */
 @Module
 @InstallIn(ActivityComponent::class)
-object DefaultSkinModule {
-
-  @DefaultSkinFactory
+object MaterialSkinModule {
+  @MaterialSkinFactory
   @Provides
-  fun provideSkinManager(@ActivityContext context: Context, @DefaultSkinFactory factory: AttrTypeFactory): SkinManager {
+  fun provideSkinManager(@ActivityContext context: Context, @MaterialSkinFactory factory: AttrTypeFactory): SkinManager {
     return SkinManager(context, factory)
   }
-
 }

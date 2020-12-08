@@ -25,6 +25,7 @@ import com.ijoic.skinchange.lite.app.databinding.ActivityViewBaseBinding
 import com.ijoic.skinchange.lite.context.impl.ActivityInjectContext.injectStatusBarColor
 import com.ijoic.skinchange.lite.context.impl.ActivityInjectContext.injectStatusBarThemeLight
 import com.ijoic.skinchange.lite.context.impl.ActivityInjectContext.injectWindowBackground
+import com.ijoic.skinchange.lite.material.hilt.MaterialSkinFactory
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -36,6 +37,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 internal class ViewBaseActivity : AppCompatActivity() {
 
+  @MaterialSkinFactory
   @Inject
   lateinit var skinManager: SkinManager
 
@@ -53,6 +55,10 @@ internal class ViewBaseActivity : AppCompatActivity() {
       .injectStatusBarThemeLight(R.bool.view_base_status_bar_text_light)
       .injectWindowBackground(R.color.view_base_window_background_color)
     skinManager.injectView(binding.root)
+
+    binding.actionBack.setOnClickListener {
+      onBackPressed()
+    }
   }
 
   companion object {

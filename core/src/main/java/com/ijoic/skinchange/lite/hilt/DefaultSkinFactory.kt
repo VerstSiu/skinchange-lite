@@ -17,28 +17,13 @@
  */
 package com.ijoic.skinchange.lite.hilt
 
-import android.content.Context
-import com.ijoic.skinchange.lite.SkinManager
-import com.ijoic.skinchange.lite.view.attr.AttrTypeFactory
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
-import dagger.hilt.android.qualifiers.ActivityContext
+import javax.inject.Qualifier
 
 /**
- * Default skin module
+ * Default skin factory annotation
  *
- * @author verstsiu created at 2020-12-07 10:59
+ * @author verstsiu created at 2020-12-08 09:46
  */
-@Module
-@InstallIn(ActivityComponent::class)
-object DefaultSkinModule {
-
-  @DefaultSkinFactory
-  @Provides
-  fun provideSkinManager(@ActivityContext context: Context, @DefaultSkinFactory factory: AttrTypeFactory): SkinManager {
-    return SkinManager(context, factory)
-  }
-
-}
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class DefaultSkinFactory

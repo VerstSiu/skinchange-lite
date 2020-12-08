@@ -57,6 +57,14 @@ internal class SuffixResourceReader(
     return measureResIdOrNull(resId, ResCategory.ATTR) ?: resId
   }
 
+  override fun getColorResId(resId: Int): Int {
+    return measureResIdOrNull(resId, ResCategory.COLOR) ?: resId
+  }
+
+  override fun getColorListResId(resId: Int): Int {
+    return measureResIdOrNull(resId, ResCategory.COLOR_LIST) ?: resId
+  }
+
   override fun getDrawableResId(resId: Int): Int {
     return measureResIdOrNull(resId, ResCategory.DRAWABLE) ?: resId
   }

@@ -16,6 +16,18 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent">
 
+    <com.google.android.material.button.MaterialButton
+      android:id="@+id/action_back"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@android:color/transparent"
+      android:tag="skin:view_base_toolbar_text_color:iconTint"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:icon="@drawable/ic_arrow_back"
+      app:iconTint="@color/view_base_toolbar_text_color"/>
+
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"

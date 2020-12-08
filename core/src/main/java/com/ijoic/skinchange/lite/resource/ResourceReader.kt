@@ -92,6 +92,16 @@ abstract class ResourceReader internal constructor(private val context: Context)
   abstract fun getAttrResId(@AttrRes resId: Int): Int
 
   /**
+   * Returns mapped color resId
+   */
+  abstract fun getColorResId(@ColorRes resId: Int): Int
+
+  /**
+   * Returns mapped color list resId
+   */
+  abstract fun getColorListResId(@ColorRes resId: Int): Int
+
+  /**
    * Returns mapped drawable resId
    */
   abstract fun getDrawableResId(@DrawableRes resId: Int): Int
@@ -114,6 +124,13 @@ abstract class ResourceReader internal constructor(private val context: Context)
   /* Get Resource ID by resId :END */
 
   /* Get Resource ID by resName */
+
+  /**
+   * Returns mapped color list resId
+   */
+  fun getColorListResIdOrNull(resName: String): Int? {
+    return measureResIdOrNull(wrapResName(resName), ResCategory.COLOR_LIST)
+  }
 
   /**
    * Returns mapped drawable resId
