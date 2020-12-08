@@ -44,17 +44,9 @@ class SkinManager @Inject constructor(
   /**
    * Bind skin [suffix]
    */
-  fun bindSuffix(suffix: String) {
+  fun bindSuffix(suffix: String): SkinManager {
     this.suffix = suffix
-  }
-
-  /**
-   * Inject [view] with current skin suffix
-   */
-  fun injectView(view: View) {
-    val suffix = this.suffix.takeIf { it != DEFAULT_SKIN_SUFFIX } ?: return
-    val reader = resourceManager.getReader(suffix)
-    viewManager.inject(view, reader)
+    return this
   }
 
   /**
@@ -62,7 +54,17 @@ class SkinManager @Inject constructor(
    */
   fun <T> injectWith(component: T): InjectContext<T> {
     val reader = resourceManager.getReader(suffix)
-    return InjectContext(component, reader)
+    return InjectContext(viewManager, component, reader)
+  }
+
+  /**
+   * Inject [view] with current skin suffix
+   */
+  fun injectView(view: View): SkinManager {
+    val suffix = this.suffix.takeIf { it != DEFAULT_SKIN_SUFFIX } ?: return this
+    val reader = resourceManager.getReader(suffix)
+    viewManager.inject(view, reader)
+    return this
   }
 
   /**
@@ -71,8 +73,16 @@ class SkinManager @Inject constructor(
   fun <T> injectOptional(component: T?, func: (InjectContext<T>) -> Unit): SkinManager {
     if (component != null) {
       val reader = resourceManager.getReader(suffix)
-      func.invoke(InjectContext(component, reader))
+      func.invoke(InjectContext(viewManager, component, reader))
     }
+    return this
+  }
+
+  /**
+   * Inject optional with [view]
+   */
+  fun injectOptional(view: View?): SkinManager {
+    view?.let(this::injectView)
     return this
   }
 

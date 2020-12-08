@@ -17,7 +17,9 @@
  */
 package com.ijoic.skinchange.lite.context
 
+import android.view.View
 import com.ijoic.skinchange.lite.resource.ResourceReader
+import com.ijoic.skinchange.lite.view.ViewManager
 
 /**
  * Inject context
@@ -25,6 +27,43 @@ import com.ijoic.skinchange.lite.resource.ResourceReader
  * @author verstsiu created at 2020-12-02 20:16
  */
 class InjectContext<T> internal constructor(
+  private val viewManager: ViewManager,
   val component: T,
   val reader: ResourceReader
-)
+) {
+
+  /**
+   * Inject with [component]
+   */
+  fun <R> injectWith(component: R): InjectContext<R> {
+    return InjectContext(viewManager, component, reader)
+  }
+
+  /**
+   * Inject [view]
+   */
+  fun injectView(view: View): InjectContext<T> {
+    viewManager.inject(view, reader)
+    return this
+  }
+
+  /**
+   * Inject optional with [component] and [func] callback
+   */
+  fun <R> injectOptional(component: R?, func: (InjectContext<R>) -> Unit): InjectContext<T> {
+    if (component != null) {
+      func.invoke(InjectContext(viewManager, component, reader))
+    }
+    return this
+  }
+
+  /**
+   * Inject optional with [view]
+   */
+  fun injectOptional(view: View?): InjectContext<T> {
+    if (view != null) {
+      viewManager.inject(view, reader)
+    }
+    return this
+  }
+}
