@@ -26,11 +26,11 @@ import com.ijoic.skinchange.lite.context.InjectContext
 import com.ijoic.skinchange.lite.util.Flags
 
 /**
- * Window inject context
+ * Activity inject context
  *
  * @author verstsiu created at 2020-12-02 20:16
  */
-object WindowInjectContext {
+object ActivityInjectContext {
   /**
    * Inject status bar color with [resId]
    */
@@ -38,7 +38,7 @@ object WindowInjectContext {
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
       val window = component.window
       if (window != null) {
-        val color = reader.getColor(resId)
+        val color = reader.getColorOrNull(resId)
         if (color != null) {
           window.statusBarColor = color
         }
@@ -56,7 +56,7 @@ object WindowInjectContext {
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
       val decorView = component.window?.decorView
       if (decorView != null) {
-        val isLight = reader.getBool(resId)
+        val isLight = reader.getBoolOrNull(resId)
         if (isLight != null) {
           decorView.systemUiVisibility = Flags.edit(
             isLight,

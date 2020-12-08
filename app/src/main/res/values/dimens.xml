@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <dimen name="view_base_toolbar_height">48dp</dimen>
+
+  <dimen name="view_base_item_margin">8dp</dimen>
+  <dimen name="view_base_item_margin_small">4dp</dimen>
+
+</resources>

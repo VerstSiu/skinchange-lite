@@ -23,8 +23,12 @@ package com.ijoic.skinchange.lite.resource.constants
  * @author verstsiu created at 2020-12-03 12:04
  */
 internal object DefTypes {
-  const val DRAWABLE = "drawable"
-  const val COLOR = "color"
-  const val MIPMAP = "mipmap"
+  const val ATTR = "attr"
   const val BOOL = "bool"
+  const val COLOR = "color"
+  const val DRAWABLE = "drawable"
+  const val LAYOUT = "layout"
+  const val MENU = "menu"
+  const val MIPMAP = "mipmap"
+  const val STYLE = "style"
 }

@@ -18,8 +18,11 @@
 package com.ijoic.skinchange.lite
 
 import android.content.Context
+import android.view.View
 import com.ijoic.skinchange.lite.context.InjectContext
 import com.ijoic.skinchange.lite.resource.ResourceManager
+import com.ijoic.skinchange.lite.view.ViewManager
+import com.ijoic.skinchange.lite.view.attr.AttrTypeFactory
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
@@ -28,9 +31,13 @@ import javax.inject.Inject
  *
  * @author verstsiu created at 2020-12-02 20:10
  */
-class SkinManager @Inject constructor(@ActivityContext context: Context) {
+class SkinManager @Inject constructor(
+  @ActivityContext context: Context,
+  factory: AttrTypeFactory
+) {
 
   private val resourceManager = ResourceManager(context)
+  private val viewManager = ViewManager(factory)
 
   private var suffix: String = DEFAULT_SKIN_SUFFIX
 
@@ -39,6 +46,15 @@ class SkinManager @Inject constructor(@ActivityContext context: Context) {
    */
   fun bindSuffix(suffix: String) {
     this.suffix = suffix
+  }
+
+  /**
+   * Inject [view] with current skin suffix
+   */
+  fun injectView(view: View) {
+    val suffix = this.suffix.takeIf { it != DEFAULT_SKIN_SUFFIX } ?: return
+    val reader = resourceManager.getReader(suffix)
+    viewManager.inject(view, reader)
   }
 
   /**

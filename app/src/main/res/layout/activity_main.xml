@@ -10,7 +10,32 @@
     android:id="@+id/action_toggle_skin"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/view_base_item_margin"
     android:text="@string/action_toggle_skin"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/skin_info"
+    app:layout_constraintHorizontal_chainStyle="packed"/>
+
+  <TextView
+    android:id="@+id/skin_info"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/view_base_item_margin"
+    android:layout_marginStart="@dimen/view_base_item_margin"
+    app:layout_constraintTop_toTopOf="@id/action_toggle_skin"
+    app:layout_constraintBottom_toBottomOf="@id/action_toggle_skin"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/action_toggle_skin"
+    app:layout_constraintHorizontal_chainStyle="packed"
+    app:layout_constraintHorizontal_weight="1"
+    tools:text="@string/app_name"/>
+
+  <Button
+    android:id="@+id/case_view_base"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/case_view_base"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"

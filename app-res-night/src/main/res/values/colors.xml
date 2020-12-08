@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <color name="view_base_status_bar_color_night">#38454E</color>
+  <color name="view_base_toolbar_text_color_night">#95C1DC</color>
+  <color name="view_base_toolbar_background_night">#293339</color>
+  <color name="view_base_window_background_color_night">#1A2125</color>
+
+</resources>

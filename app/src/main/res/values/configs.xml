@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <bool name="common_status_bar_text_light">false</bool>
+  <bool name="view_base_status_bar_text_light">true</bool>
 
 </resources>

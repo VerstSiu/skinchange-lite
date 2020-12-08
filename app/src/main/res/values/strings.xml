@@ -1,5 +1,10 @@
 <resources>
   <string name="app_name">SkinChange Lite</string>
 
-  <string name="action_toggle_skin">Toggle skin</string>
+  <string name="action_toggle_skin">Toggle</string>
+
+  <string name="case_view_base">Case view base</string>
+
+  <string name="format_skin_info">Current Skin: %s</string>
+
 </resources>

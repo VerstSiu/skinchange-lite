@@ -18,10 +18,12 @@
 package com.ijoic.skinchange.lite.resource
 
 import android.content.Context
-import androidx.annotation.AnyRes
-import androidx.annotation.BoolRes
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
+import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
+import androidx.annotation.*
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.res.ResourcesCompat
+import com.ijoic.skinchange.lite.resource.constants.ResCategory
 
 /**
  * Resource reader
@@ -30,24 +32,126 @@ import androidx.annotation.DrawableRes
  */
 abstract class ResourceReader internal constructor(private val context: Context) {
 
-  private val idCache = mutableMapOf<Int, Int>()
-  private val boolCache = mutableMapOf<Int, Boolean>()
-  private val colorCache = mutableMapOf<Int, Int>()
+  /* Get Resource by resId */
 
   /**
    * Returns boolean value of [resId]
    */
-  abstract fun getBool(@BoolRes resId: Int): Boolean?
+  abstract fun getBoolOrNull(@BoolRes resId: Int): Boolean?
 
   /**
    * Returns color value of [resId]
    */
-  abstract fun getColor(@ColorRes resId: Int): Int?
+  abstract fun getColorOrNull(@ColorRes resId: Int): Int?
+
+  /**
+   * Returns color list value of [resId]
+   */
+  abstract fun getColorListOrNull(@ColorRes resId: Int): ColorStateList?
+
+  /**
+   * Returns drawable value of [resId]
+   */
+  abstract fun getDrawableOrNull(@DrawableRes resId: Int): Drawable?
+
+  /* Get Resource by resId :END */
+
+  /* Get Resource by resName */
+
+  /**
+   * Returns color value of [resName]
+   */
+  fun getColorOrNull(resName: String): Int? {
+    val resId = measureResIdOrNull(wrapResName(resName), ResCategory.COLOR) ?: return null
+    return fetchColorOrNull(resId)
+  }
+
+  /**
+   * Returns color value of [resName]
+   */
+  fun getColorListOrNull(resName: String): ColorStateList? {
+    val resId = measureResIdOrNull(wrapResName(resName), ResCategory.COLOR) ?: return null
+    return fetchColorListOrNull(resId)
+  }
+
+  /**
+   * Returns drawable value of [resName]
+   */
+  fun getDrawableOrNull(resName: String): Drawable? {
+    val resId = measureResIdOrNull(resName, ResCategory.DRAWABLE) ?: return null
+    return fetchDrawableOrNull(resId)
+  }
+
+  /* Get Resource by resName :END */
+
+  /* Get Resource ID by resId */
+
+  /**
+   * Returns mapped drawable resId
+   */
+  abstract fun getAttrResId(@AttrRes resId: Int): Int
+
+  /**
+   * Returns mapped color resId
+   */
+  abstract fun getColorResId(@ColorRes resId: Int): Int
+
+  /**
+   * Returns mapped color list resId
+   */
+  abstract fun getColorListResId(@ColorRes resId: Int): Int
 
   /**
    * Returns mapped drawable resId
    */
   abstract fun getDrawableResId(@DrawableRes resId: Int): Int
+
+  /**
+   * Returns mapped layout resId
+   */
+  abstract fun getLayoutResId(@LayoutRes resId: Int): Int
+
+  /**
+   * Returns mapped menu resId
+   */
+  abstract fun getMenuResId(@MenuRes resId: Int): Int
+
+  /**
+   * Returns mapped style resId
+   */
+  abstract fun getStyleResId(@StyleRes resId: Int): Int
+
+  /* Get Resource ID by resId :END */
+
+  /* Get Resource ID by resName */
+
+  /**
+   * Returns mapped color list resId
+   */
+  fun getColorListResIdOrNull(resName: String): Int? {
+    return measureResIdOrNull(wrapResName(resName), ResCategory.COLOR_LIST)
+  }
+
+  /**
+   * Returns mapped drawable resId
+   */
+  fun getDrawableResIdOrNull(resName: String): Int? {
+    return measureResIdOrNull(wrapResName(resName), ResCategory.DRAWABLE)
+  }
+
+  /**
+   * Returns mapped style resId
+   */
+  fun getStyleResIdOrNull(resName: String): Int? {
+    return measureResIdOrNull(wrapResName(resName), ResCategory.STYLE)
+  }
+
+  /* Get Resource ID by resName :END */
+
+  /* Fetch Resource */
+
+  private val boolCache = mutableMapOf<Int, Boolean>()
+  private val colorCache = mutableMapOf<Int, Int>()
 
   /**
    * Returns fetched bool or null
@@ -75,25 +179,45 @@ abstract class ResourceReader internal constructor(private val context: Context)
     var color = colorCache[resId]
 
     if (color == null) {
-      color = context.resources?.runCatching { getColor(resId) }?.getOrNull()
+      val resources = context.resources ?: return null
+      color = this.runCatching { ResourcesCompat.getColor(resources, resId, null) }.getOrNull()
         ?.also { colorCache[resId] = it }
     }
     return color
   }
 
   /**
+   * Returns fetched color list or null
+   */
+  protected fun fetchColorListOrNull(@ColorRes resId: Int): ColorStateList? {
+    if (resId == 0) {
+      return null
+    }
+    return this.runCatching { AppCompatResources.getColorStateList(context, resId) }.getOrNull()
+  }
+
+  /**
+   * Returns fetched drawable or null
+   */
+  protected fun fetchDrawableOrNull(@DrawableRes resId: Int): Drawable? {
+    if (resId == 0) {
+      return null
+    }
+    return this.runCatching { AppCompatResources.getDrawable(context, resId) }.getOrNull()
+  }
+
+  /**
    * Returns measured suffix resId or null
    */
-  protected fun measureSuffixResIdOrNull(suffix: String, @AnyRes resId: Int, vararg defTypes: String): Int? {
-    val measuredId = idCache[resId]
-    if (measuredId != null) {
-      return measuredId
+  private fun measureResIdOrNull(resName: String, category: String, vararg defTypes: String): Int? {
+    val cacheId = readResIdFromCache(resName, category)
+    if (cacheId != null) {
+      return cacheId
     }
     val resources = context.resources ?: return null
     var resultId = 0
 
     try {
-      val resName = resources.getResourceName(resId)?.let { "${it}_$suffix" } ?: return null
       when(defTypes.size) {
         0 -> {
           resultId = resources.getIdentifier(resName, null, context.packageName)
@@ -119,9 +243,59 @@ abstract class ResourceReader internal constructor(private val context: Context)
     }
 
     if (resultId != 0) {
+      writeResIdToCache(resName, category, resultId)
+      return resultId
+    }
+    return null
+  }
+
+  /* Fetch Resource :END */
+
+  /* Measure Resource ID */
+
+  private val idCache = mutableMapOf<Int, Int>()
+  private val resCache = mutableMapOf<String, MutableMap<String, Int>>()
+
+  /**
+   * Returns measured suffix resId or null
+   */
+  internal fun measureResIdOrNull(@AnyRes resId: Int, category: ResCategory): Int? {
+    if (resId == 0) {
+      return null
+    }
+    val measuredId = idCache[resId]
+    if (measuredId != null) {
+      return measuredId
+    }
+    val resources = context.resources ?: return null
+    val resName = resources.runCatching { getResourceName(resId) }.getOrNull()?.let(this::wrapResName) ?: return null
+    val resultId = measureResIdOrNull(resName, category)
+
+    if (resultId != null) {
       idCache[resId] = resultId
       return resultId
     }
     return null
   }
+
+  private fun measureResIdOrNull(resName: String, category: ResCategory): Int? {
+    return measureResIdOrNull(resName, category.name, *category.defTypes)
+  }
+
+  private fun readResIdFromCache(resName: String, category: String): Int? {
+    return resCache[category]?.get(resName)
+  }
+
+  private fun writeResIdToCache(resName: String, category: String, resId: Int) {
+    val cacheMap = resCache.getOrPut(category) { mutableMapOf() }
+    cacheMap[resName] = resId
+  }
+
+  /* Measure Resource ID :END */
+
+  /**
+   * Wrap [resName]
+   */
+  protected abstract fun wrapResName(resName: String): String
+
 }

@@ -41,6 +41,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+    implementation "com.google.android.material:material:$material_version"
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
@@ -49,4 +50,7 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     implementation project(':core')
+    implementation project(':material')
+
+    runtimeOnly project(':app-res-night')
 }

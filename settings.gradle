@@ -1,3 +1,5 @@
+include ':material'
+include ':app-res-night'
 include ':app'
 rootProject.name = 'skinchange-lite'
 include ':core'

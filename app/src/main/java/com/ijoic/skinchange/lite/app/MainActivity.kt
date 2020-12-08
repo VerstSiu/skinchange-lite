@@ -17,15 +17,13 @@
  */
 package com.ijoic.skinchange.lite.app
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.ijoic.skinchange.lite.SkinManager
 import com.ijoic.skinchange.lite.app.databinding.ActivityMainBinding
-import com.ijoic.skinchange.lite.context.impl.WindowInjectContext.injectStatusBarColor
-import com.ijoic.skinchange.lite.context.impl.WindowInjectContext.injectStatusBarThemeLight
-import com.ijoic.skinchange.lite.context.impl.WindowInjectContext.injectWindowBackground
+import com.ijoic.skinchange.lite.app.view.ViewBaseActivity
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import java.util.*
 
 /**
  * Main activity
@@ -35,23 +33,31 @@ import javax.inject.Inject
 @AndroidEntryPoint
 internal class MainActivity : AppCompatActivity() {
 
-  @Inject lateinit var skinManager: SkinManager
-
   private lateinit var binding: ActivityMainBinding
+  private var suffix = ""
+  private var suffixIndex = 0
+  private var suffixList = mutableListOf("", "night")
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
-
-    skinManager.bindSuffix("s2")
-    skinManager.injectWith(this)
-      .injectStatusBarColor(R.color.common_status_bar_color)
-      .injectStatusBarThemeLight(R.bool.common_status_bar_text_light)
-      .injectWindowBackground(R.color.common_window_background_color)
+    updateSkinInfo()
 
     binding.actionToggleSkin.setOnClickListener {
-
+      suffixIndex = (++suffixIndex).takeIf { it <= suffixList.size } ?: 0
+      suffix = suffixList.getOrNull(suffixIndex).orEmpty()
+      updateSkinInfo()
     }
+    binding.caseViewBase.setOnClickListener {
+      val intent = Intent(this, ViewBaseActivity::class.java)
+      intent.putExtra(ViewBaseActivity.EXTRA_SKIN_SUFFIX, suffix)
+      startActivity(intent)
+    }
+  }
+
+  private fun updateSkinInfo() {
+    val skin = suffix.takeIf { it.isNotEmpty() } ?: "day"
+    binding.skinInfo.text = getString(R.string.format_skin_info, skin.toUpperCase(Locale.getDefault()))
   }
 }
