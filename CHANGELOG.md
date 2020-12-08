@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-alpha.7](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.6...0.0.1-alpha.7) (2020-12-08)
+
+
+### New Features
+
+* Add inject chain support ([ccb6958](https://github.com/VerstSiu/skinchange-litecommit/ccb69588afba888ac51cef088bfe6e32e0ed7df2))
+
 ### [0.0.1-alpha.6](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.5...0.0.1-alpha.6) (2020-12-08)
 
 
