@@ -49,12 +49,13 @@ internal class ViewBaseActivity : AppCompatActivity() {
     setContentView(binding.root)
 
     val suffix = intent?.getStringExtra(EXTRA_SKIN_SUFFIX).orEmpty()
-    skinManager.bindSuffix(suffix)
-    skinManager.injectWith(this)
+    skinManager
+      .bindSuffix(suffix)
+      .injectWith(this)
       .injectStatusBarColor(R.color.view_base_toolbar_background)
       .injectStatusBarThemeLight(R.bool.view_base_status_bar_text_light)
       .injectWindowBackground(R.color.view_base_window_background_color)
-    skinManager.injectView(binding.root)
+      .injectView(binding.root)
 
     binding.actionBack.setOnClickListener {
       onBackPressed()
