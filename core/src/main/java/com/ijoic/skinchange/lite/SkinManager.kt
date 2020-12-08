@@ -65,6 +65,17 @@ class SkinManager @Inject constructor(
     return InjectContext(component, reader)
   }
 
+  /**
+   * Inject optional with [component] and [func] callback
+   */
+  fun <T> injectOptional(component: T?, func: (InjectContext<T>) -> Unit): SkinManager {
+    if (component != null) {
+      val reader = resourceManager.getReader(suffix)
+      func.invoke(InjectContext(component, reader))
+    }
+    return this
+  }
+
   companion object {
     internal const val DEFAULT_SKIN_SUFFIX = ""
   }
