@@ -1,5 +1,8 @@
-include ':material'
-include ':app-res-night'
-include ':app'
 rootProject.name = 'skinchange-lite'
+include ':app'
 include ':core'
+include ':material'
+
+if (!System.env.JITPACK) {
+    include ':app-res-night'
+}
