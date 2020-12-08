@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-alpha.6](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.5...0.0.1-alpha.6) (2020-12-08)
+
+
+### New Features
+
+* Add inject optional support ([94cff7b](https://github.com/VerstSiu/skinchange-litecommit/94cff7b3d1ef7ee707eec5231131dbb25d614218))
+
 ### [0.0.1-alpha.5](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.4...0.0.1-alpha.5) (2020-12-08)
 
 ### [0.0.1-alpha.4](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.3...0.0.1-alpha.4) (2020-12-08)

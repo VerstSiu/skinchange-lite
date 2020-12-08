@@ -1,6 +1,6 @@
 {
   "name": "skinchange-lite",
-  "version": "0.0.1-alpha.5",
+  "version": "0.0.1-alpha.6",
   "description": "[![](https://jitpack.io/v/VerstSiu/skinchange-lite.svg)](https://jitpack.io/#VerstSiu/skinchange-lite)",
   "main": "index.js",
   "scripts": {
