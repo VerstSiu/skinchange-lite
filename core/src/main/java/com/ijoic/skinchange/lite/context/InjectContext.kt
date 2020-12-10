@@ -50,7 +50,7 @@ class InjectContext<T> internal constructor(
   /**
    * Inject optional with [component] and [func] callback
    */
-  fun <R> injectOptional(component: R?, func: (InjectContext<R>) -> Unit): InjectContext<T> {
+  fun <R> injectOptional(component: R?, func: InjectContext<R>.() -> Unit): InjectContext<T> {
     if (component != null) {
       func.invoke(InjectContext(viewManager, component, reader))
     }

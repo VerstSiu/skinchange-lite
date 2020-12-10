@@ -70,7 +70,7 @@ class SkinManager @Inject constructor(
   /**
    * Inject optional with [component] and [func] callback
    */
-  fun <T> injectOptional(component: T?, func: (InjectContext<T>) -> Unit): SkinManager {
+  fun <T> injectOptional(component: T?, func: InjectContext<T>.() -> Unit): SkinManager {
     if (component != null) {
       val reader = resourceManager.getReader(suffix)
       func.invoke(InjectContext(viewManager, component, reader))
