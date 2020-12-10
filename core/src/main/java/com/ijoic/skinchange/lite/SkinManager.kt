@@ -21,6 +21,7 @@ import android.content.Context
 import android.view.View
 import com.ijoic.skinchange.lite.context.InjectContext
 import com.ijoic.skinchange.lite.resource.ResourceManager
+import com.ijoic.skinchange.lite.resource.ResourceReader
 import com.ijoic.skinchange.lite.view.ViewManager
 import com.ijoic.skinchange.lite.view.attr.AttrTypeFactory
 import dagger.hilt.android.qualifiers.ActivityContext
@@ -40,6 +41,13 @@ class SkinManager @Inject constructor(
   private val viewManager = ViewManager(factory)
 
   private var suffix: String = DEFAULT_SKIN_SUFFIX
+
+  /**
+   * Returns current suffix resource reader
+   */
+  fun getReader(): ResourceReader {
+    return resourceManager.getReader(suffix)
+  }
 
   /**
    * Bind skin [suffix]
