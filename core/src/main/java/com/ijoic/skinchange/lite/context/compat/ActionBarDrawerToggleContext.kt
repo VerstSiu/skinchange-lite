@@ -27,7 +27,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-05 19:54
  */
-class ActionBarDrawerToggleContext {
+object ActionBarDrawerToggleContext {
   /**
    * Inject arrow drawable with [resId]
    */

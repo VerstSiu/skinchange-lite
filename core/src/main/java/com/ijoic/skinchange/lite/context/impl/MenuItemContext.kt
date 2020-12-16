@@ -27,7 +27,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 15:40
  */
-class MenuItemContext {
+object MenuItemContext {
 
   /**
    * Inject icon with [resId]

@@ -26,7 +26,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 17:54
  */
-class TabWidgetContext {
+object TabWidgetContext {
   /**
    * Inject divider drawable with [resId]
    */

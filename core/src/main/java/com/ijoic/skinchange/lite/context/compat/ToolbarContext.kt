@@ -30,7 +30,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-05 21:51
  */
-class ToolbarContext {
+object ToolbarContext {
 
   /**
    * Inject popup theme with [resId]

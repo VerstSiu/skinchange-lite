@@ -26,7 +26,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 16:41
  */
-class ArrayAdapterContext {
+object ArrayAdapterContext {
 
   /**
    * Inject drop down view with [resId]

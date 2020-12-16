@@ -27,7 +27,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 19:48
  */
-class TintableCompoundButtonContext {
+object TintableCompoundButtonContext {
 
   /**
    * Inject background tint list with [resId]

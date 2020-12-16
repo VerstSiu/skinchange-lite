@@ -27,7 +27,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-05 21:21
  */
-class TintableCompoundDrawablesViewContext {
+object TintableCompoundDrawablesViewContext {
 
   /**
    * Inject compound drawable tint list with [resId]
