@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-alpha.9](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.8...0.0.1-alpha.9) (2020-12-16)
+
 ### [0.0.1-alpha.8](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.7...0.0.1-alpha.8) (2020-12-10)
 
 ### [0.0.1-alpha.7](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.6...0.0.1-alpha.7) (2020-12-08)
