@@ -26,7 +26,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 17:54
  */
-class TabSpecContext {
+object TabSpecContext {
   /**
    * Inject indicator with [resId]
    */

@@ -26,7 +26,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 20:00
  */
-class LinearLayoutCompatContext {
+object LinearLayoutCompatContext {
 
   /**
    * Inject button with [resId]

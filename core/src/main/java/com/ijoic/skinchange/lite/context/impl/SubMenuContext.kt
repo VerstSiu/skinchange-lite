@@ -26,7 +26,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 15:44
  */
-class SubMenuContext {
+object SubMenuContext {
 
   /**
    * Inject header icon with [resId]

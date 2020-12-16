@@ -28,7 +28,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 19:14
  */
-class ActionBarDrawerToggleDelegateContext {
+object ActionBarDrawerToggleDelegateContext {
   /**
    * Inject action bar up indicator with [resId]
    */

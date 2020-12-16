@@ -26,7 +26,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-05 19:46
  */
-class ActionBarContext {
+object ActionBarContext {
   /**
    * Inject background drawable with [resId]
    */

@@ -26,7 +26,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 20:03
  */
-class ListPopupWindowContext {
+object ListPopupWindowContext {
 
   /**
    * Inject list selector with [resId]

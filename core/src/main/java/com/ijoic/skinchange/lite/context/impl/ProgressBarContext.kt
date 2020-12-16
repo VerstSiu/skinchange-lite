@@ -26,7 +26,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-05 20:18
  */
-class ProgressBarContext {
+object ProgressBarContext {
   /**
    * Inject indeterminate drawable with [resId]
    */

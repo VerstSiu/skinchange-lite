@@ -27,7 +27,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 14:53
  */
-class AlertDialogBuilderContext {
+object AlertDialogBuilderContext {
 
   /**
    * Inject icon with [resId]

@@ -26,7 +26,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 19:27
  */
-class AppCompatDialogContext {
+object AppCompatDialogContext {
 
   /**
    * Inject button with [resId]

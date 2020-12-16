@@ -26,7 +26,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 17:02
  */
-class ExpandableListViewContext {
+object ExpandableListViewContext {
   /**
    * Inject child divider with [resId]
    */

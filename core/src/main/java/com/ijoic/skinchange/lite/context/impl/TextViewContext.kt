@@ -28,7 +28,7 @@ import com.ijoic.skinchange.lite.util.TextViewHelper
  *
  * @author verstsiu created at 2020-12-05 20:21
  */
-class TextViewContext {
+object TextViewContext {
 
   /**
    * Inject error with [resId]

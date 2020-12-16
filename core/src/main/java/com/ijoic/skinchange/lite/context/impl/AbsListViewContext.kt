@@ -27,7 +27,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-05 20:42
  */
-class AbsListViewContext {
+object AbsListViewContext {
   /**
    * Inject list selector with [resId]
    */

@@ -27,7 +27,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 12:19
  */
-class ActionBarContext {
+object ActionBarContext {
   /**
    * Inject custom view with [resId]
    */

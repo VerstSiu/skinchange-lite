@@ -28,7 +28,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-05 20:38
  */
-class SwitchContext {
+object SwitchContext {
   /**
    * Inject switch text appearance with [resId]
    */

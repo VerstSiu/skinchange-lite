@@ -28,7 +28,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 16:13
  */
-class WindowContext {
+object WindowContext {
 
   /**
    * Inject content view with [resId]

@@ -26,7 +26,7 @@ import com.ijoic.skinchange.lite.context.InjectContext
  *
  * @author verstsiu created at 2020-12-07 16:46
  */
-class CalendarViewContext {
+object CalendarViewContext {
 
   /**
    * Inject weekday text appearance with [resId]
