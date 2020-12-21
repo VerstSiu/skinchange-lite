@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-alpha.10](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.9...0.0.1-alpha.10) (2020-12-21)
+
+
+### Bug Fixes
+
+* Fix wrap missing of getDrawableOrNull(String) ([d225f4e](https://github.com/VerstSiu/skinchange-litecommit/d225f4e4e95d1188d3caf2a2f8ccd3603d662b2e))
+
 ### [0.0.1-alpha.9](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.8...0.0.1-alpha.9) (2020-12-16)
 
 ### [0.0.1-alpha.8](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.7...0.0.1-alpha.8) (2020-12-10)
