@@ -78,7 +78,7 @@ abstract class ResourceReader internal constructor(private val context: Context)
    * Returns drawable value of [resName]
    */
   fun getDrawableOrNull(resName: String): Drawable? {
-    val resId = measureResIdOrNull(resName, ResCategory.DRAWABLE) ?: return null
+    val resId = measureResIdOrNull(wrapResName(resName), ResCategory.DRAWABLE) ?: return null
     return fetchDrawableOrNull(resId)
   }
 
