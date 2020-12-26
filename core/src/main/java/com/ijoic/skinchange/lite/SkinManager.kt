@@ -94,6 +94,33 @@ class SkinManager @Inject constructor(
     return this
   }
 
+  /**
+   * Inject batch with [components] and [func] callback
+   */
+  fun <T> injectBatch(vararg components: T, func: InjectContext<T>.() -> Unit): SkinManager {
+    if (components.isNotEmpty()) {
+      val reader = resourceManager.getReader(suffix)
+      components.forEach {
+        func.invoke(InjectContext(viewManager, it, reader))
+      }
+    }
+    return this
+  }
+
+  /**
+   * Inject batch with [views]
+   */
+  fun injectBatch(vararg views: View): SkinManager {
+    if (views.isNotEmpty()) {
+      val suffix = this.suffix.takeIf { it != DEFAULT_SKIN_SUFFIX } ?: return this
+      val reader = resourceManager.getReader(suffix)
+      views.forEach {
+        viewManager.inject(it, reader)
+      }
+    }
+    return this
+  }
+
   companion object {
     internal const val DEFAULT_SKIN_SUFFIX = ""
   }

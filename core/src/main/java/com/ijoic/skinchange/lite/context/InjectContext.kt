@@ -66,4 +66,28 @@ class InjectContext<T> internal constructor(
     }
     return this
   }
+
+  /**
+   * Inject batch with [components] and [func] callback
+   */
+  fun <R> injectBatch(vararg components: R, func: InjectContext<R>.() -> Unit): InjectContext<T> {
+    if (components.isNotEmpty()) {
+      components.forEach {
+        func.invoke(InjectContext(viewManager, it, reader))
+      }
+    }
+    return this
+  }
+
+  /**
+   * Inject batch with [views]
+   */
+  fun injectBatch(vararg views: View): InjectContext<T> {
+    if (views.isNotEmpty()) {
+      views.forEach {
+        viewManager.inject(it, reader)
+      }
+    }
+    return this
+  }
 }
