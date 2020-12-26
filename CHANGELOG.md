@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-alpha.11](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.10...0.0.1-alpha.11) (2020-12-26)
+
+
+### New Features
+
+* Add inject batch support ([8e264c6](https://github.com/VerstSiu/skinchange-litecommit/8e264c67427854bc9442c1b6ad1f750450939038))
+
 ### [0.0.1-alpha.10](https://github.com/VerstSiu/skinchange-litecompare/0.0.1-alpha.9...0.0.1-alpha.10) (2020-12-21)
 
 
