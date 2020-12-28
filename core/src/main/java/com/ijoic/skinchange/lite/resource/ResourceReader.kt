@@ -70,7 +70,7 @@ abstract class ResourceReader internal constructor(private val context: Context)
    * Returns color value of [resName]
    */
   fun getColorListOrNull(resName: String): ColorStateList? {
-    val resId = measureResIdOrNull(wrapResName(resName), ResCategory.COLOR) ?: return null
+    val resId = measureResIdOrNull(wrapResName(resName), ResCategory.COLOR_LIST) ?: return null
     return fetchColorListOrNull(resId)
   }
 
